@@ -2,70 +2,240 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Star TV Online</title>
+  <meta name="theme-color" content="#0b3c5d">
+
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
+      background: #020617;
+      color: #f8fafc;
     }
+
+    /* Splash */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #0b3c5d, #020617);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
     header {
-      padding: 30px 20px;
+      background: linear-gradient(135deg, #0b3c5d, #020617);
+      padding: 25px 15px 20px;
       text-align: center;
     }
-    .container {
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
+
+    section {
+      padding: 30px 18px 90px;
+      display: none;
     }
+    section.active { display: block; }
+
+    h2 { color: #38bdf8; margin-top: 0; }
+
+    ul, ol { padding-left: 20px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
     .card {
-      background: rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 22px;
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
     }
+
     .btn {
       display: block;
-      margin: 10px 0;
+      margin: 12px 0;
       padding: 15px;
       border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
       text-align: center;
+      font-weight: bold;
+      text-decoration: none;
     }
-    .whatsapp { background:#25D366; color:#000; }
-    .support { background:#128C7E; color:#fff; }
-    .test { background:#4da3ff; color:#000; }
+
+    .whatsapp { background: #22c55e; color: #000; }
+    .support { background: #0ea5e9; color: #000; }
+    .pay { background: #facc15; color: #000; }
+    .test { background: #38bdf8; color: #000; }
+
+    nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #020617;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #1e293b;
+      padding: 10px 0;
+      z-index: 10;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: #7dd3fc;
+      font-weight: bold;
+      font-size: 0.8em;
+    }
+    nav button.active { color: #38bdf8; }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 80px;
+      right: 15px;
+      background: #22c55e;
+      color: #000;
+      padding: 14px 16px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.4em;
+      z-index: 20;
+    }
   </style>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+
+      const sec = document.getElementById(id);
+      const btn = document.getElementById('btn-' + id);
+
+      if (sec) sec.classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById('splash').style.display = 'none';
+        showSection('inicio');
+      }, 1200);
+    }
+  </script>
 </head>
 <body>
 
-<header>
+<div id="splash">
   <h1>⭐ Star TV Online</h1>
-  <p>IPTV Premium • Estável • Suporte Rápido</p>
+  <p>Carregando…</p>
+</div>
+
+<header>
+  <h1>Star TV Online</h1>
+  <p>TV Online Premium</p>
 </header>
 
-<div class="container">
-  <div class="card">
-    <h2>📡 Sobre o Serviço</h2>
-    <p>Canais, filmes, séries e esportes em alta qualidade.</p>
-  </div>
+<section id="inicio">
+  <h2>📡 Bem-vindo ao IPTV</h2>
+  <p><strong>Assista TV ao vivo, filmes e séries direto no aplicativo.</strong></p>
+  <p>Sem antena, sem cabo e sem complicação. Basta internet.</p>
 
-  <div class="card">
-    <h2>📲 Atendimento</h2>
-    <a class="btn whatsapp" href="https://wa.me/5521988373685" target="_blank">
-      💬 Falar no WhatsApp
-    </a>
-    <a class="btn support" href="https://wa.me/5521988373685?text=Suporte%20Opção%202" target="_blank">
-      🛠️ Suporte Opção 2
-    </a>
-    <a class="btn test" href="https://wa.me/5521988373685?text=Quero%20teste%20grátis" target="_blank">
-      🎁 Solicitar Teste Grátis
-    </a>
+  <h3>🎯 O que você vai ter</h3>
+  <ul>
+    <li>Canais ao vivo</li>
+    <li>Filmes e séries atualizados</li>
+    <li>Esportes, infantil, notícias e muito mais</li>
+    <li>Tudo organizado em um só app</li>
+  </ul>
+
+  <a class="btn test" href="https://wa.me/5521988373685?text=Quero%20teste%20grátis">🎁 Solicitar Teste Grátis</a>
+</section>
+
+<section id="conteudo">
+  <h2>⚙️ Como Funciona</h2>
+  <ol>
+    <li>Baixe o aplicativo</li>
+    <li>Faça login</li>
+    <li>Escolha o que assistir</li>
+    <li>Dê play</li>
+  </ol>
+
+  <h3>📍 Onde Funciona</h3>
+  <ul>
+    <li>Smart TV</li>
+    <li>TV Box</li>
+    <li>Celular Android</li>
+    <li>Tablet</li>
+    <li>Computador</li>
+  </ul>
+
+  <h3>🌐 Internet Necessária</h3>
+  <p>HD: a partir de <strong>10 Mbps</strong></p>
+  <p>Full HD: <strong>15 Mbps ou mais</strong></p>
+  <p><em>Internet instável pode causar travamentos.</em></p>
+</section>
+
+<section id="planos">
+  <h2>💰 Planos</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>⭐ Standard</h3>
+      <p><strong>R$ 35,00</strong></p>
+      <p>Canais, filmes, séries e esportes</p>
+      <a class="btn whatsapp" href="https://wa.me/5521988373685?text=Quero%20Plano%20Standard">Assinar</a>
+    </div>
+
+    <div class="card">
+      <h3>👑 Premium</h3>
+      <p><strong>R$ 45,00</strong></p>
+      <p>Inclui canais Privê 🔞</p>
+      <a class="btn whatsapp" href="https://wa.me/5521988373685?text=Quero%20Plano%20Premium">Assinar</a>
+    </div>
   </div>
-</div>
+</section>
+
+<section id="vantagens">
+  <h2>⭐ Vantagens do IPTV</h2>
+  <ul>
+    <li>Mais barato que TV a cabo</li>
+    <li>Sem antena ou instalação</li>
+    <li>Mais conteúdo</li>
+    <li>Mobilidade total</li>
+  </ul>
+
+  <h3>📊 IPTV x TV a Cabo</h3>
+  <p><strong>IPTV:</strong> internet, mais barato e flexível.</p>
+  <p><strong>TV a cabo:</strong> fios, custo maior e limitação.</p>
+</section>
+
+<section id="suporte">
+  <h2>❓ Dúvidas Comuns</h2>
+  <ul>
+    <li>Não precisa de antena</li>
+    <li>Funciona no Wi-Fi</li>
+    <li>Pode travar se a internet for ruim</li>
+    <li>Uso simultâneo depende do plano</li>
+  </ul>
+
+  <h3>⚠️ Aviso Importante</h3>
+  <p>Este aplicativo é apenas um reprodutor de mídia. O conteúdo é de responsabilidade do fornecedor.</p>
+
+  <a class="btn support" href="https://wa.me/5521988373685">💬 Fale Conosco</a>
+</section>
+
+<nav>
+  <button id="btn-inicio" onclick="showSection('inicio')">Início</button>
+  <button id="btn-conteudo" onclick="showSection('conteudo')">Conteúdo</button>
+  <button id="btn-planos" onclick="showSection('planos')">Planos</button>
+  <button id="btn-vantagens" onclick="showSection('vantagens')">Vantagens</button>
+  <button id="btn-suporte" onclick="showSection('suporte')">Suporte</button>
+</nav>
+
+<a class="whatsapp-float" href="https://wa.me/5521988373685">💬</a>
 
 </body>
 </html>
