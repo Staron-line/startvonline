@@ -34,7 +34,6 @@
       text-align: center;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
     }
 
     .logo {
@@ -53,12 +52,11 @@
       margin-top: 18px;
     }
 
-    /* BOTÕES QUADRADOS DE VERDADE */
     button {
       width: 100%;
-      aspect-ratio: 1 / 1; /* mantém quadrado */
-      max-height: 110px; /* reduz altura */
-      font-size: 14px; /* texto menor */
+      aspect-ratio: 1 / 1;
+      max-height: 110px;
+      font-size: 14px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
@@ -68,7 +66,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 10px; /* padding menor */
+      padding: 10px;
       box-sizing: border-box;
     }
 
@@ -79,20 +77,13 @@
 
     .hidden { display: none !important; }
 
-    .app > div[id] {
-      width: 100%;
-      box-sizing: border-box;
-    }
-
     ul {
-      list-style: none; /* remove os pontos */
+      list-style: none;
       padding-left: 0;
       margin: 10px 0;
     }
 
-    ul li {
-      margin-bottom: 6px;
-    }
+    ul li { margin-bottom: 6px; }
   </style>
 </head>
 <body>
@@ -100,7 +91,6 @@
 
     <div class="logo">Star TV <span>Online</span></div>
 
-    <!-- HOME -->
     <div id="home">
       <h1>Sua TV, do seu jeito!</h1>
       <p>Selecione uma opção para iniciar o atendimento.</p>
@@ -114,14 +104,13 @@
       </div>
     </div>
 
-    <!-- SUPORTE -->
     <div id="cliente" class="hidden">
       <h2>Suporte</h2>
       <div class="buttons" style="display:grid;grid-template-columns:1fr 1fr;">
         <button onclick="showSection('semImagem')">SEM IMAGEM</button>
         <button onclick="showSection('semConexao')">SEM CONEXÃO</button>
         <button onclick="showSection('semCanais')">SEM CANAIS</button>
-        <button class="whatsapp" onclick="openWhats()">ADICIONAR TV</button>
+        <button class="whatsapp" onclick="openWhats('ADICIONAR_TV')">ADICIONAR TV</button>
       </div>
       <div class="buttons">
         <button class="secondary" onclick="showSection('home')">VOLTAR</button>
@@ -177,24 +166,22 @@
 
       <div class="buttons" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
         <button onclick="openWhats('STANDARD')">
-          <strong>STANDARD</strong><br>
-          <span style="font-size:13px; margin:6px 0; display:block;">R$ 35,00</span>
+          <strong>STANDARD</strong>
+          <span style="font-size:13px; margin:6px 0;">R$ 35,00</span>
           <small>CANAIS | FILMES | SÉRIES</small>
         </button>
 
-        <button onclick="openWhats('PREMIUM')" style="background:linear-gradient(145deg,#8e44ad,#5e3370); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+        <button onclick="openWhats('PREMIUM')" style="background:linear-gradient(145deg,#8e44ad,#5e3370);">
           <strong>PREMIUM ⭐</strong>
-          <span style="color:#ffd700; font-weight:bold; font-size:12px; margin:4px 0;">MAIS COMPLETO</span>
-          <span style="font-size:13px; margin:4px 0;">R$ 45,00</span>
-          <span style="font-size:11px; line-height:1.3;">CANAIS | FILMES | SÉRIES + PRIVÊ</span>
-          
+          <span style="color:#ffd700; font-weight:bold; font-size:12px;">MAIS COMPLETO</span>
+          <span style="font-size:13px;">R$ 45,00</span>
+          <small>CANAIS | FILMES | SÉRIES + PRIVÊ</small>
         </button>
       </div>
 
       <div class="buttons">
         <button class="secondary" onclick="showSection('naoCliente')">VOLTAR</button>
       </div>
-    </div>
     </div>
 
     <div id="pagamento" class="hidden">
@@ -216,7 +203,12 @@
     }
 
     function openWhats(plano) {
-      const msg = plano ? `Olá, escolhi o plano ${plano}` : 'Olá, quero mais informações';
+      let msg;
+      if (plano === 'STANDARD') msg = 'Olá, escolhi o plano STANDARD';
+      else if (plano === 'PREMIUM') msg = 'Olá, escolhi o plano PREMIUM';
+      else if (plano === 'ADICIONAR_TV') msg = 'Olá! Quero adicionar mais uma TV';
+      else msg = 'Olá, quero mais informações';
+
       window.open(`https://wa.me/message/DYCZL5NVX6T7H1?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
@@ -231,4 +223,3 @@
   </script>
 </body>
 </html>
-
