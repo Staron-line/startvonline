@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: url('/background.png') no-repeat center center fixed;
+      background: url('A_digital_interface_screenshot_of_Star_TV_Online\'s.png') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -211,7 +211,7 @@
       </div>
     </div>
 
-    <div id="pagamento" class="hidden">
+    <div id="pagamento" class="hidden"> class="hidden">
       <h2>Pagamento</h2>
       <p>Chave Pix (aleatória):</p>
       <strong>c83427a5-24e5-4244-9dc5-225536cbd356</strong>
@@ -224,42 +224,71 @@
   </div>
 
   <script>
-    // Controle de navegação entre seções
-    function showSection(id) {
-      document.querySelectorAll('.app > div[id]').forEach(div => div.classList.add('hidden'));
-      const section = document.getElementById(id);
-      if (section) section.classList.remove('hidden');
-    }
+  // Garante que o script rode apenas após o carregamento do HTML
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Controle de navegação entre seções
+    window.showSection = function(id) {
+      // Seleciona todas as divs que são filhas diretas de .app e têm um ID
+      const sections = document.querySelectorAll('.app > div[id]');
+      
+      sections.forEach(div => {
+        div.classList.add('hidden');
+      });
 
-    // Abertura do WhatsApp com mensagem contextual
-    function openWhats(plano) {
-      let msg;
-
-      if (plano === 'STANDARD') {
-        msg = 'Eu quero o plano Standard';
-      } else if (plano === 'PREMIUM') {
-        msg = 'Eu quero o plano Premium';
-      } else if (plano === 'ADICIONAR_TV') {
-        msg = 'Olá! Quero adicionar mais uma TV';
+      const sectionToShow = document.getElementById(id);
+      if (sectionToShow) {
+        sectionToShow.classList.remove('hidden');
+        // Rola para o topo da nova seção automaticamente
+        window.scrollTo(0, 0);
       } else {
-        msg = 'Olá, quero mais informações';
+        console.error("Seção não encontrada: " + id);
       }
+    };
 
-      const url = `https://wa.me/5521988373685?text=${encodeURIComponent(msg)}`;
-      window.location.href = url; // compatível com mobile e WebView
-    }
+    // 2. Abertura do WhatsApp com mensagem contextual
+    window.openWhats = function(plano) {
+      let msg = 'Olá, quero mais informações';
 
-    // Teste de velocidade da internet
-    function openSpeed() {
-      window.location.href = 'https://minhaconexao.com.br';
-    }
+      if (plano === 'STANDARD') msg = 'Eu quero o plano Standard';
+      if (plano === 'PREMIUM') msg = 'Eu quero o plano Premium';
+      if (plano === 'ADICIONAR_TV') msg = 'Olá! Quero adicionar mais uma TV';
 
-    // Copiar chave Pix
-    function copyPix() {
-      navigator.clipboard.writeText('c83427a5-24e5-4244-9dc5-225536cbd356');
-      alert('Chave Pix copiada com sucesso!');
-    }
-  </script>
+      const phone = '5521988373685';
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+      
+      // Abre em nova aba para não fechar o app/site
+      window.open(url, '_blank');
+    };
+
+    // 3. Teste de velocidade da internet
+    window.openSpeed = function() {
+      window.open('https://www.speedtest.net/pt', '_blank');
+    };
+
+    // 4. Copiar chave Pix
+    window.copyPix = function() {
+      const chavePix = 'c83427a5-24e5-4244-9dc5-225536cbd356';
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(chavePix).then(() => {
+          alert('Chave Pix copiada com sucesso!');
+        }).catch(err => {
+          console.error('Erro ao copiar: ', err);
+          alert('Chave: ' + chavePix);
+        });
+      } else {
+        // Fallback manual caso o navegador bloqueie a API de clipboard
+        const input = document.createElement('input');
+        input.value = chavePix;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        alert('Chave Pix copiada!');
+      }
+    };
+  });
+</script>
 </body>
 </html>
-
