@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Star TV Online</title>
+  <title>Star Online</title>
   <style>
     body {
       margin: 0;
@@ -20,12 +20,15 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: rgba(255,255,255,0.6);
-      z-index: -1;
+      background: rgba(255,255,255,0.7);
+      z-index: 0;
+      pointer-events: none;
     }
 
     .app {
-      background: rgba(255,255,255,0.9);
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.92);
       width: 100%;
       max-width: 390px;
       min-height: 100vh;
@@ -89,7 +92,7 @@
 <body>
   <div class="app">
 
-    <div class="logo">Star TV <span>Online</span></div>
+    <div class="logo">Star <span>Online</span></div>
 
     <div id="home">
       <h1>Sua TV, do seu jeito!</h1>
@@ -127,7 +130,7 @@
 
     <div id="semConexao" class="hidden">
       <h2>Sem Conexão</h2>
-      <p>Desligue o modem/roteador da tomada por 1 minuto e tente novamente.</p>
+      <p>Desligue o modem ou roteador da tomada por 1 minuto e tente novamente.</p>
       <div class="buttons">
         <button class="secondary" onclick="showSection('cliente')">VOLTAR</button>
       </div>
@@ -135,7 +138,7 @@
 
     <div id="semCanais" class="hidden">
       <h2>Sem Canais</h2>
-      <p>Verifique sua internet e informe: PING / DOWNLOAD / UPLOAD.</p>
+      <p>Verifique se sua mensalidade está em dia. Faça a medição da sua internet e informe: PING / DOWNLOAD / UPLOAD.</p>
       <div class="buttons">
         <button class="link" onclick="openSpeed()">TESTAR VELOCIDADE</button>
         <button class="secondary" onclick="showSection('cliente')">VOLTAR</button>
@@ -144,8 +147,8 @@
 
     <div id="naoCliente" class="hidden">
       <h2>Informações</h2>
-      <p>Alta qualidade de transmissão. Internet estável é recomendada.</p>
-      <p>Preferência por conexão via cabo.</p>
+      <p>Alta qualidade de transmissão. Internet mínima de 45 Mbps estável é recomendada.</p>
+      <p>Preferência por conexão via cabo para melhor aproveitamento do sinal.</p>
       <h3>Compatibilidade</h3>
       <ul>
         <li>Smart TV</li>
@@ -165,17 +168,17 @@
       <p>Escolha o plano ideal para você.</p>
 
       <div class="buttons" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
-        <button onclick="openWhats('STANDARD')">
+        <button onclick="showSection('demoStandard')">
           <strong>STANDARD</strong>
           <span style="font-size:13px; margin:6px 0;">R$ 35,00</span>
           <small>CANAIS | FILMES | SÉRIES</small>
         </button>
 
-        <button onclick="openWhats('PREMIUM')" style="background:linear-gradient(145deg,#8e44ad,#5e3370);">
+        <button onclick="showSection('demoPremium')" style="background:linear-gradient(145deg,#8e44ad,#5e3370);">
           <strong>PREMIUM ⭐</strong>
           <span style="color:#ffd700; font-weight:bold; font-size:12px;">MAIS COMPLETO</span>
           <span style="font-size:13px;">R$ 45,00</span>
-          <small>CANAIS | FILMES | SÉRIES + PRIVÊ</small>
+          <small>CANAIS | FILMES | SÉRIES + CANAIS PRIVÊ</small>
         </button>
       </div>
 
@@ -184,9 +187,33 @@
       </div>
     </div>
 
-    <div id="pagamento" class="hidden">
+    <!-- DEMONSTRAÇÃO STANDARD -->
+    <div id="demoStandard" class="hidden">
+      <h2>Plano Standard</h2>
+      <img src="https://via.placeholder.com/300x180?text=Plano+Standard" style="width:100%;border-radius:8px;margin:10px 0;" />
+      <p>Canais ao vivo, filmes e séries com ótima qualidade.</p>
+      <p>Ideal para toda a família.</p>
+      <div class="buttons">
+        <button class="whatsapp" onclick="openWhats('STANDARD')">QUERO ESSE PLANO</button>
+        <button class="secondary" onclick="showSection('planos')">VOLTAR</button>
+      </div>
+    </div>
+
+    <!-- DEMONSTRAÇÃO PREMIUM -->
+    <div id="demoPremium" class="hidden">
+      <h2>Plano Premium</h2>
+      <img src="https://via.placeholder.com/300x180?text=Plano+Premium" style="width:100%;border-radius:8px;margin:10px 0;" />
+      <p>Todos os canais, filmes, séries e conteúdos adultos.</p>
+      <p>Experiência completa e sem limitações.</p>
+      <div class="buttons">
+        <button class="whatsapp" onclick="openWhats('PREMIUM')">QUERO ESSE PLANO</button>
+        <button class="secondary" onclick="showSection('planos')">VOLTAR</button>
+      </div>
+    </div>
+
+    <div id="pagamento" class="hidden"> class="hidden">
       <h2>Pagamento</h2>
-      <p>Chave Pix:</p>
+      <p>Chave Pix (aleatória):</p>
       <strong>c83427a5-24e5-4244-9dc5-225536cbd356</strong>
       <div class="buttons">
         <button class="payment" onclick="copyPix()">COPIAR PIX</button>
@@ -197,25 +224,37 @@
   </div>
 
   <script>
+    // Controle de navegação entre seções
     function showSection(id) {
       document.querySelectorAll('.app > div[id]').forEach(div => div.classList.add('hidden'));
-      document.getElementById(id).classList.remove('hidden');
+      const section = document.getElementById(id);
+      if (section) section.classList.remove('hidden');
     }
 
+    // Abertura do WhatsApp com mensagem contextual
     function openWhats(plano) {
       let msg;
-      if (plano === 'STANDARD') msg = 'Olá, escolhi o plano STANDARD';
-      else if (plano === 'PREMIUM') msg = 'Olá, escolhi o plano PREMIUM';
-      else if (plano === 'ADICIONAR_TV') msg = 'Olá! Quero adicionar mais uma TV';
-      else msg = 'Olá, quero mais informações';
 
-      window.open(`https://wa.me/message/DYCZL5NVX6T7H1?text=${encodeURIComponent(msg)}`, '_blank');
+      if (plano === 'STANDARD') {
+        msg = 'Eu quero o plano Standard';
+      } else if (plano === 'PREMIUM') {
+        msg = 'Eu quero o plano Prêmium';
+      } else if (plano === 'ADICIONAR_TV') {
+        msg = 'Olá! Quero adicionar mais uma TV';
+      } else {
+        msg = 'Olá, quero mais informações';
+      }
+
+      const url = `https://wa.me/5521988373685?text=${encodeURIComponent(msg)}`;
+      window.location.href = url; // compatível com mobile e WebView
     }
 
+    // Teste de velocidade da internet
     function openSpeed() {
-      window.open('https://minhaconexao.com.br', '_blank');
+      window.location.href = 'https://minhaconexao.com.br';
     }
 
+    // Copiar chave Pix
     function copyPix() {
       navigator.clipboard.writeText('c83427a5-24e5-4244-9dc5-225536cbd356');
       alert('Chave Pix copiada com sucesso!');
