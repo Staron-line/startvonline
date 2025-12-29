@@ -9,32 +9,50 @@
       --primary: #2e86c1; 
       --whatsapp: #27ae60; 
       --accent: #f39c12; 
-      --bg: #121212; /* Fundo escuro para visual moderno */
-      --card: #1e1e1e;
+      --bg-dark: #121212;
     }
     
-    body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; }
+    body { 
+      margin: 0; 
+      font-family: 'Segoe UI', Roboto, sans-serif; 
+      background: var(--bg-dark) url('https://r.jina.ai/i/667688220f4c4da79f727c9c043e390c') no-repeat center center fixed; 
+      background-size: cover;
+      color: white; 
+      display: flex; 
+      justify-content: center; 
+    }
     
+    /* Overlay para garantir leitura sobre a imagem */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 0;
+    }
+
     .app { 
-      background: #1a1a1a; 
+      position: relative;
+      z-index: 1;
+      background: rgba(26, 26, 26, 0.85); 
       width: 100%; 
       max-width: 420px; 
       min-height: 100vh; 
       padding: 25px; 
       text-align: center; 
       box-sizing: border-box;
+      backdrop-filter: blur(5px);
     }
 
     .logo { font-size: 28px; font-weight: bold; margin-bottom: 30px; letter-spacing: 1px; }
     .logo span { color: #f1c40f; }
 
     h1, h2 { font-size: 22px; margin-bottom: 20px; }
-    p { color: #bbb; line-height: 1.6; font-size: 16px; }
+    p { color: #ddd; line-height: 1.6; font-size: 16px; }
 
     .buttons { display: grid; gap: 15px; margin-top: 20px; }
     .grid-2 { grid-template-columns: 1fr 1fr; }
 
-    /* Botões Grandes */
     button { 
       padding: 20px 15px; 
       border: none; 
@@ -45,30 +63,24 @@
       font-weight: bold; 
       font-size: 16px;
       transition: transform 0.2s, background 0.3s;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
     button:active { transform: scale(0.96); }
 
     .sec { background: #444; }
     .wpp { background: var(--whatsapp); }
     .pay { background: var(--accent); }
+    .danger { background: #c0392b; }
 
-    /* Planos Estilizados */
     .plan-card {
-      background: var(--card);
+      background: rgba(30, 30, 30, 0.9);
       border: 1px solid #333;
       border-radius: 15px;
       padding: 20px;
       margin-bottom: 15px;
       text-align: left;
     }
-    .plan-card.highlight { border: 2px solid #f1c40f; position: relative; }
-    .badge { 
-      background: #f1c40f; color: black; padding: 3px 10px; 
-      border-radius: 5px; font-size: 12px; font-weight: bold; 
-      position: absolute; top: -10px; right: 10px;
-    }
-
+    
     .hidden { display: none !important; }
     strong { color: #fff; display: block; font-size: 18px; margin-bottom: 5px; }
     small { color: #aaa; display: block; margin-bottom: 15px; }
@@ -103,20 +115,16 @@
 
   <div id="planos" class="hidden">
     <h2>Nossos Planos</h2>
-    
     <div class="plan-card">
       <strong>Básico</strong>
       <small>CANAIS | FILMES | SÉRIES</small>
       <button style="width:100%" onclick="wpp('Basico')">ASSINAR BÁSICO</button>
     </div>
-
-    <div class="plan-card highlight">
-      <span class="badge">MAIS VENDIDO</span>
+    <div class="plan-card" style="border: 2px solid #f1c40f;">
       <strong>Completo ⭐</strong>
       <small>CANAIS | FILMES | SÉRIES + PRIVÊ</small>
       <button style="width:100%; background: #8e44ad" onclick="wpp('Completo')">ASSINAR COMPLETO</button>
     </div>
-
     <button class="sec" style="width:100%" onclick="nav('naoCliente')">VOLTAR</button>
   </div>
 
@@ -127,8 +135,19 @@
       <button onclick="nav('semConexao')">SEM CONEXÃO</button>
     </div>
     <div class="buttons">
+      <button class="danger" onclick="nav('travando')">⚠️ TRAVANDO</button>
       <button class="wpp" onclick="wpp('TV')">ADICIONAR NOVA TV</button>
       <button class="sec" onclick="nav('home')">VOLTAR</button>
+    </div>
+  </div>
+
+  <div id="travando" class="hidden">
+    <h2>Conteúdo Travando?</h2>
+    <p>Sabia que 90% desses problemas estão relacionados a oscilação da sua conexão de internet?</p>
+    <div class="buttons">
+      <button onclick="window.location.href='https://minhaconexao.com.br'">TESTAR VELOCIDADE</button>
+      <button class="wpp" onclick="wpp('Suporte')">AINDA PRECISO DE AJUDA</button>
+      <button class="sec" onclick="nav('cliente')">VOLTAR</button>
     </div>
   </div>
 
@@ -152,39 +171,33 @@
 
   <div id="semConexao" class="hidden">
     <h2>Sem Conexão?</h2>
-    <p>Verifique se o seu Wi-Fi está funcionando ou se o cabo de rede está conectado atrás do aparelho.</p>
+    <p>Verifique seu Wi-Fi ou se o cabo de rede está conectado corretamente atrás do aparelho.</p>
     <button class="sec" style="width:100%" onclick="nav('cliente')">VOLTAR</button>
   </div>
 
 </div>
 
 <script>
-  // Função para mudar de tela
   function nav(id) {
     document.querySelectorAll('.app > div[id]').forEach(div => div.classList.add('hidden'));
-    const target = document.getElementById(id);
-    if(target) target.classList.remove('hidden');
+    document.getElementById(id).classList.remove('hidden');
     window.scrollTo(0,0);
   }
 
-  // WhatsApp com mensagens automáticas
   function wpp(assunto) {
-    let msg = "Olá, vim pelo site e preciso de informações.";
-    if(assunto === 'Basico') msg = "Olá! Gostaria de assinar o Plano Básico.";
-    if(assunto === 'Completo') msg = "Olá! Gostaria de assinar o Plano Completo.";
-    if(assunto === 'Teste') msg = "Olá! Gostaria de um teste grátis.";
-    if(assunto === 'TV') msg = "Olá! Gostaria de adicionar mais um ponto de TV.";
+    let msg = "Olá, preciso de informações.";
+    if(assunto === 'Basico') msg = "Olá! Quero assinar o Plano Básico.";
+    if(assunto === 'Completo') msg = "Olá! Quero assinar o Plano Completo.";
+    if(assunto === 'Teste') msg = "Olá! Quero um teste grátis.";
+    if(assunto === 'TV') msg = "Olá! Quero adicionar um ponto de TV.";
+    if(assunto === 'Suporte') msg = "Olá, meu sistema está travando e já testei a internet.";
 
-    const fone = "5521988373685";
-    window.open(`https://wa.me/${fone}?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/5521988373685?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
-  // Copiar Chave Pix
   function copy() {
     const chave = "c83427a5-24e5-4244-9dc5-225536cbd356";
-    navigator.clipboard.writeText(chave).then(() => {
-      alert("Chave Pix copiada! Agora basta colar no seu banco.");
-    });
+    navigator.clipboard.writeText(chave).then(() => alert("Pix Copiado!"));
   }
 </script>
 
