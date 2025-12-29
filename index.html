@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Star Online</title>
   <style>
-    /* Seu CSS permanece o mesmo, mas adicionei uma regra para garantir visibilidade */
-    body { margin: 0; font-family: sans-serif; background: #f4f4f4; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-    .app { background: #fff; width: 100%; max-width: 390px; min-height: 100vh; padding: 20px; box-sizing: border-box; text-align: center; position: relative; z-index: 1; }
-    .hidden { display: none !important; }
-    .buttons { display: flex; flex-direction: column; gap: 14px; margin-top: 18px; }
-    button { width: 100%; padding: 15px; border: none; border-radius: 6px; cursor: pointer; color: #fff; background: linear-gradient(145deg, #5dade2, #2e86c1); font-weight: bold; }
-    .secondary { background: #7f8c8d; }
-    .whatsapp { background: #27ae60; }
-    .payment { background: #f39c12; }
+    :root { --primary: #2e86c1; --whatsapp: #27ae60; --accent: #f39c12; }
+    body { margin: 0; font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; }
+    .app { background: white; width: 100%; max-width: 400px; min-height: 100vh; padding: 20px; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
     .logo { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
     .logo span { color: #f1c40f; }
+    .buttons { display: grid; gap: 10px; margin-top: 15px; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    button { padding: 15px; border: none; border-radius: 8px; cursor: pointer; color: white; background: var(--primary); font-weight: bold; transition: 0.3s; }
+    button:active { opacity: 0.8; }
+    .sec { background: #7f8c8d; }
+    .wpp { background: var(--whatsapp); }
+    .pay { background: var(--accent); }
+    .hidden { display: none; }
+    p { color: #555; line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -25,69 +28,74 @@
 
   <div id="home">
     <h1>Sua TV, do seu jeito!</h1>
-    <div class="buttons" style="display:grid; grid-template-columns: 1fr 1fr;">
-      <button onclick="showSection('cliente')">SOU CLIENTE</button>
-      <button onclick="showSection('naoCliente')">NÃO CLIENTE</button>
+    <div class="buttons grid-2">
+      <button onclick="nav('cliente')">SOU CLIENTE</button>
+      <button onclick="nav('naoCliente')">NÃO CLIENTE</button>
     </div>
     <div class="buttons">
-      <button class="whatsapp" onclick="openWhats()">FALAR COM ATENDENTE</button>
-      <button class="payment" onclick="showSection('pagamento')">PAGAMENTO</button>
+      <button class="wpp" onclick="wpp()">FALAR COM ATENDENTE</button>
+      <button class="pay" onclick="nav('pagamento')">PAGAMENTO</button>
     </div>
   </div>
 
   <div id="cliente" class="hidden">
     <h2>Suporte</h2>
-    <div class="buttons" style="display:grid; grid-template-columns: 1fr 1fr;">
-      <button onclick="showSection('semImagem')">SEM IMAGEM</button>
-      <button onclick="showSection('semConexao')">SEM CONEXÃO</button>
-      <button class="whatsapp" onclick="openWhats('ADICIONAR_TV')">ADICIONAR TV</button>
-      <button class="secondary" onclick="showSection('home')">VOLTAR</button>
+    <div class="buttons grid-2">
+      <button onclick="nav('semImagem')">SEM IMAGEM</button>
+      <button onclick="nav('semConexao')">SEM CONEXÃO</button>
+      <button class="wpp" onclick="wpp('TV')">ADICIONAR TV</button>
+      <button class="sec" onclick="nav('home')">VOLTAR</button>
     </div>
   </div>
 
   <div id="pagamento" class="hidden">
-    <h2>Pagamento</h2>
-    <p>Chave Pix:</p>
-    <code id="pixKey" style="display:block; background:#eee; padding:10px; margin:10px 0;">c83427a5-24e5-4244-9dc5-225536cbd356</code>
+    <h2>Pagamento Pix</h2>
+    <p>Chave: <br><strong>c83427a5-24e5-4244-9dc5-225536cbd356</strong></p>
     <div class="buttons">
-      <button class="payment" onclick="copyPix()">COPIAR PIX</button>
-      <button class="secondary" onclick="showSection('home')">VOLTAR</button>
+      <button class="pay" onclick="copy()">COPIAR CHAVE PIX</button>
+      <button class="sec" onclick="nav('home')">VOLTAR</button>
     </div>
   </div>
 
+  <div id="semImagem" class="hidden">
+    <h2>Sem Imagem?</h2>
+    <p>Desligue o aparelho da tomada por 1 minuto e tente novamente.</p>
+    <button class="sec" onclick="nav('cliente')">VOLTAR</button>
   </div>
 
+  <div id="semConexao" class="hidden">
+    <h2>Sem Conexão?</h2>
+    <p>Reinicie seu modem de internet e verifique os cabos.</p>
+    <button class="sec" onclick="nav('cliente')">VOLTAR</button>
+  </div>
+
+  <div id="naoCliente" class="hidden">
+    <h2>Planos Star</h2>
+    <p>Canais HD + Filmes e Séries<br>A partir de R$ 35,00</p>
+    <div class="buttons">
+      <button class="wpp" onclick="wpp('Teste')">SOLICITAR TESTE GRÁTIS</button>
+      <button class="sec" onclick="nav('home')">VOLTAR</button>
+    </div>
+  </div>
+</div>
+
 <script>
-  // Função Global para trocar seções
-  function showSection(id) {
-    // Esconde todas as seções que são filhas de .app e tem ID
-    const sections = document.querySelectorAll('.app > div[id]');
-    sections.forEach(s => s.classList.add('hidden'));
-    
-    // Mostra a seção desejada
-    const target = document.getElementById(id);
-    if (target) {
-      target.classList.remove('hidden');
-    }
+  // Navegação Simples
+  function nav(id) {
+    document.querySelectorAll('.app > div[id]').forEach(d => d.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
   }
 
-  // Função para WhatsApp
-  function openWhats(tipo) {
-    let msg = "Olá, gostaria de informações.";
-    if(tipo === 'ADICIONAR_TV') msg = "Olá! Quero adicionar mais uma TV";
-    
-    const url = "https://wa.me/5521988373685?text=" + encodeURIComponent(msg);
-    window.open(url, '_blank');
+  // WhatsApp Contextual
+  function wpp(tipo) {
+    const msg = tipo === 'TV' ? 'Quero adicionar TV' : (tipo === 'Teste' ? 'Quero um teste grátis' : 'Olá, preciso de suporte');
+    window.open(`https://wa.me/5521988373685?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
-  // Função Copiar Pix
-  function copyPix() {
-    const texto = "c83427a5-24e5-4244-9dc5-225536cbd356";
-    navigator.clipboard.writeText(texto).then(() => {
-      alert("Pix copiado!");
-    }).catch(() => {
-      alert("Erro ao copiar. Chave: " + texto);
-    });
+  // Copiar Pix
+  function copy() {
+    const chave = "c83427a5-24e5-4244-9dc5-225536cbd356";
+    navigator.clipboard.writeText(chave).then(() => alert("Pix Copiado!"));
   }
 </script>
 
