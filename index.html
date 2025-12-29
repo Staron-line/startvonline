@@ -3,22 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Star Online</title>
+  <title>Star Online - Premium</title>
   <style>
-    :root { --primary: #2e86c1; --whatsapp: #27ae60; --accent: #f39c12; }
-    body { margin: 0; font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; }
-    .app { background: white; width: 100%; max-width: 400px; min-height: 100vh; padding: 20px; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .logo { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
+    :root { 
+      --primary: #2e86c1; 
+      --whatsapp: #27ae60; 
+      --accent: #f39c12; 
+      --bg: #121212; /* Fundo escuro para visual moderno */
+      --card: #1e1e1e;
+    }
+    
+    body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; }
+    
+    .app { 
+      background: #1a1a1a; 
+      width: 100%; 
+      max-width: 420px; 
+      min-height: 100vh; 
+      padding: 25px; 
+      text-align: center; 
+      box-sizing: border-box;
+    }
+
+    .logo { font-size: 28px; font-weight: bold; margin-bottom: 30px; letter-spacing: 1px; }
     .logo span { color: #f1c40f; }
-    .buttons { display: grid; gap: 10px; margin-top: 15px; }
+
+    h1, h2 { font-size: 22px; margin-bottom: 20px; }
+    p { color: #bbb; line-height: 1.6; font-size: 16px; }
+
+    .buttons { display: grid; gap: 15px; margin-top: 20px; }
     .grid-2 { grid-template-columns: 1fr 1fr; }
-    button { padding: 15px; border: none; border-radius: 8px; cursor: pointer; color: white; background: var(--primary); font-weight: bold; transition: 0.3s; }
-    button:active { opacity: 0.8; }
-    .sec { background: #7f8c8d; }
+
+    /* Botões Grandes */
+    button { 
+      padding: 20px 15px; 
+      border: none; 
+      border-radius: 12px; 
+      cursor: pointer; 
+      color: white; 
+      background: var(--primary); 
+      font-weight: bold; 
+      font-size: 16px;
+      transition: transform 0.2s, background 0.3s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    button:active { transform: scale(0.96); }
+
+    .sec { background: #444; }
     .wpp { background: var(--whatsapp); }
     .pay { background: var(--accent); }
-    .hidden { display: none; }
-    p { color: #555; line-height: 1.4; }
+
+    /* Planos Estilizados */
+    .plan-card {
+      background: var(--card);
+      border: 1px solid #333;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .plan-card.highlight { border: 2px solid #f1c40f; position: relative; }
+    .badge { 
+      background: #f1c40f; color: black; padding: 3px 10px; 
+      border-radius: 5px; font-size: 12px; font-weight: bold; 
+      position: absolute; top: -10px; right: 10px;
+    }
+
+    .hidden { display: none !important; }
+    strong { color: #fff; display: block; font-size: 18px; margin-bottom: 5px; }
+    small { color: #aaa; display: block; margin-bottom: 15px; }
   </style>
 </head>
 <body>
@@ -34,23 +87,57 @@
     </div>
     <div class="buttons">
       <button class="wpp" onclick="wpp()">FALAR COM ATENDENTE</button>
-      <button class="pay" onclick="nav('pagamento')">PAGAMENTO</button>
+      <button class="pay" onclick="nav('pagamento')">PAGAMENTO PIX</button>
     </div>
   </div>
 
+  <div id="naoCliente" class="hidden">
+    <h2>Boas vindas a Tv do seu jeito!</h2>
+    <p>Tenha acesso ao melhor conteúdo sem travamentos.</p>
+    <div class="buttons">
+      <button onclick="nav('planos')">VER NOSSOS PLANOS</button>
+      <button class="wpp" onclick="wpp('Teste')">SOLICITAR TESTE GRÁTIS</button>
+      <button class="sec" onclick="nav('home')">VOLTAR</button>
+    </div>
+  </div>
+
+  <div id="planos" class="hidden">
+    <h2>Nossos Planos</h2>
+    
+    <div class="plan-card">
+      <strong>Básico</strong>
+      <small>CANAIS | FILMES | SÉRIES</small>
+      <button style="width:100%" onclick="wpp('Basico')">ASSINAR BÁSICO</button>
+    </div>
+
+    <div class="plan-card highlight">
+      <span class="badge">MAIS VENDIDO</span>
+      <strong>Completo ⭐</strong>
+      <small>CANAIS | FILMES | SÉRIES + PRIVÊ</small>
+      <button style="width:100%; background: #8e44ad" onclick="wpp('Completo')">ASSINAR COMPLETO</button>
+    </div>
+
+    <button class="sec" style="width:100%" onclick="nav('naoCliente')">VOLTAR</button>
+  </div>
+
   <div id="cliente" class="hidden">
-    <h2>Suporte</h2>
+    <h2>Suporte ao Cliente</h2>
     <div class="buttons grid-2">
       <button onclick="nav('semImagem')">SEM IMAGEM</button>
       <button onclick="nav('semConexao')">SEM CONEXÃO</button>
-      <button class="wpp" onclick="wpp('TV')">ADICIONAR TV</button>
+    </div>
+    <div class="buttons">
+      <button class="wpp" onclick="wpp('TV')">ADICIONAR NOVA TV</button>
       <button class="sec" onclick="nav('home')">VOLTAR</button>
     </div>
   </div>
 
   <div id="pagamento" class="hidden">
     <h2>Pagamento Pix</h2>
-    <p>Chave: <br><strong>c83427a5-24e5-4244-9dc5-225536cbd356</strong></p>
+    <div class="plan-card" style="text-align: center;">
+      <p>Chave Aleatória:</p>
+      <code style="word-break: break-all; color: #f1c40f;">c83427a5-24e5-4244-9dc5-225536cbd356</code>
+    </div>
     <div class="buttons">
       <button class="pay" onclick="copy()">COPIAR CHAVE PIX</button>
       <button class="sec" onclick="nav('home')">VOLTAR</button>
@@ -59,43 +146,45 @@
 
   <div id="semImagem" class="hidden">
     <h2>Sem Imagem?</h2>
-    <p>Desligue o aparelho da tomada por 1 minuto e tente novamente.</p>
-    <button class="sec" onclick="nav('cliente')">VOLTAR</button>
+    <p>1. Desligue o aparelho da tomada.<br>2. Aguarde 1 minuto.<br>3. Ligue e abra o app novamente.</p>
+    <button class="sec" style="width:100%" onclick="nav('cliente')">VOLTAR</button>
   </div>
 
   <div id="semConexao" class="hidden">
     <h2>Sem Conexão?</h2>
-    <p>Reinicie seu modem de internet e verifique os cabos.</p>
-    <button class="sec" onclick="nav('cliente')">VOLTAR</button>
+    <p>Verifique se o seu Wi-Fi está funcionando ou se o cabo de rede está conectado atrás do aparelho.</p>
+    <button class="sec" style="width:100%" onclick="nav('cliente')">VOLTAR</button>
   </div>
 
-  <div id="naoCliente" class="hidden">
-    <h2>Planos Star</h2>
-    <p>Canais HD + Filmes e Séries<br>A partir de R$ 35,00</p>
-    <div class="buttons">
-      <button class="wpp" onclick="wpp('Teste')">SOLICITAR TESTE GRÁTIS</button>
-      <button class="sec" onclick="nav('home')">VOLTAR</button>
-    </div>
-  </div>
 </div>
 
 <script>
-  // Navegação Simples
+  // Função para mudar de tela
   function nav(id) {
-    document.querySelectorAll('.app > div[id]').forEach(d => d.classList.add('hidden'));
-    document.getElementById(id).classList.remove('hidden');
+    document.querySelectorAll('.app > div[id]').forEach(div => div.classList.add('hidden'));
+    const target = document.getElementById(id);
+    if(target) target.classList.remove('hidden');
+    window.scrollTo(0,0);
   }
 
-  // WhatsApp Contextual
-  function wpp(tipo) {
-    const msg = tipo === 'TV' ? 'Quero adicionar TV' : (tipo === 'Teste' ? 'Quero um teste grátis' : 'Olá, preciso de suporte');
-    window.open(`https://wa.me/5521988373685?text=${encodeURIComponent(msg)}`, '_blank');
+  // WhatsApp com mensagens automáticas
+  function wpp(assunto) {
+    let msg = "Olá, vim pelo site e preciso de informações.";
+    if(assunto === 'Basico') msg = "Olá! Gostaria de assinar o Plano Básico.";
+    if(assunto === 'Completo') msg = "Olá! Gostaria de assinar o Plano Completo.";
+    if(assunto === 'Teste') msg = "Olá! Gostaria de um teste grátis.";
+    if(assunto === 'TV') msg = "Olá! Gostaria de adicionar mais um ponto de TV.";
+
+    const fone = "5521988373685";
+    window.open(`https://wa.me/${fone}?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
-  // Copiar Pix
+  // Copiar Chave Pix
   function copy() {
     const chave = "c83427a5-24e5-4244-9dc5-225536cbd356";
-    navigator.clipboard.writeText(chave).then(() => alert("Pix Copiado!"));
+    navigator.clipboard.writeText(chave).then(() => {
+      alert("Chave Pix copiada! Agora basta colar no seu banco.");
+    });
   }
 </script>
 
