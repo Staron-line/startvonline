@@ -113,22 +113,22 @@
       <button onclick="nav('naoCliente')">NÃO CLIENTE</button>
     </div>
 
-    <div class="plan-card" style="text-align: center; border: 1px solid var(--primary);">
-      <strong style="color: var(--primary);">INDICAR UM AMIGO</strong>
-      <p style="font-size: 13px; margin-bottom: 10px;">Indique e ganhe benefícios!</p>
-      <input type="tel" id="telIndicado" placeholder="DDD + Número">
-      <button class="sec" style="width: 100%; padding: 12px;" onclick="indicarAmigo()">INDICAR AGORA</button>
-    </div>
-
     <div class="buttons">
       <button class="wpp" onclick="wpp()">FALAR COM ATENDENTE</button>
       <button class="pay" onclick="nav('pagamento')">PAGAMENTO PIX</button>
+    </div>
+
+    <div class="plan-card" style="text-align: center; border: 1px solid var(--primary); margin-top: 25px;">
+      <strong style="color: var(--primary);">INDIQUE UM AMIGO</strong>
+      <p style="font-size: 13px; margin-bottom: 10px;">Indique e ganhe dias grátis!</p>
+      <input type="tel" id="telIndicado" placeholder="DDD + Número">
+      <button class="sec" style="width: 100%; padding: 12px; font-size: 13px;" onclick="indicarAmigo()">ENVIAR INDICAÇÃO</button>
     </div>
   </div>
 
   <div id="naoCliente" class="hidden">
     <h2>Boas vindas à TV do seu jeito!</h2>
-    <p>Tenha acesso ao melhor conteúdo sem antenas ou cabos espalhados pela casa.</p>
+    <p>A melhor grade de canais e filmes sem precisar de antenas.</p>
     <div class="buttons">
       <button onclick="nav('planos')">VER NOSSOS PLANOS</button>
       <button class="wpp" onclick="wpp('Teste')">SOLICITAR TESTE GRÁTIS</button>
@@ -167,12 +167,6 @@
   <div id="travando" class="hidden">
     <h2>Conteúdo Travando?</h2>
     <p>Sabia que 90% desses problemas estão relacionados à oscilação da sua conexão de internet?</p>
-    <p style="font-size: 14px; text-align: left;">
-      1. Faça o teste de velocidade abaixo.<br>
-      2. Clique em INICIAR.<br>
-      3. Tire um print ou foto do resultado.<br>
-      4. Mande para o nosso suporte técnico.
-    </p>
     <div class="buttons">
       <button onclick="window.open('https://minhaconexao.com.br', '_blank')">TESTAR VELOCIDADE</button>
       <button class="wpp" onclick="wpp('Suporte')">JÁ TESTEI E PRECISO DE AJUDA</button>
@@ -183,9 +177,8 @@
   <div id="pagamento" class="hidden">
     <h2>Pagamento Pix</h2>
     <div class="plan-card" style="text-align: center;">
-      <p>Copie a Chave Aleatória:</p>
+      <p>Chave Aleatória:</p>
       <code>c83427a5-24e5-4244-9dc5-225536cbd356</code>
-      <p style="font-size: 13px; color: #aaa;">Após pagar, envie o comprovante abaixo.</p>
     </div>
     <div class="buttons">
       <button class="pay" onclick="copy()">COPIAR CHAVE PIX</button>
@@ -196,62 +189,37 @@
 
   <div id="semImagem" class="hidden">
     <h2>Sem Imagem?</h2>
-    <p>1. Desligue o aparelho da tomada.<br>2. Aguarde 60 segundos.<br>3. Ligue novamente e abra o app.</p>
+    <p>1. Desligue o aparelho da tomada.<br>2. Aguarde 60 segundos.<br>3. Ligue e abra o app novamente.</p>
     <button class="sec" style="width:100%" onclick="nav('cliente')">VOLTAR</button>
   </div>
 
   <div id="semConexao" class="hidden">
     <h2>Sem Conexão?</h2>
-    <p>Reinicie seu roteador e verifique se os cabos estão bem conectados.</p>
+    <p>Verifique o cabo de rede e reinicie seu modem de internet.</p>
     <button class="sec" style="width:100%" onclick="nav('cliente')">VOLTAR</button>
   </div>
 
 </div>
 
 <script>
-  // Navegação
   function nav(id) {
     document.querySelectorAll('.app > div[id]').forEach(div => div.classList.add('hidden'));
     document.getElementById(id).classList.remove('hidden');
     window.scrollTo(0,0);
   }
 
-  // WhatsApp
   function wpp(assunto) {
     let msg = "Olá, preciso de informações.";
     if(assunto === 'Basico') msg = "Olá! Quero assinar o Plano Básico.";
     if(assunto === 'Completo') msg = "Olá! Quero assinar o Plano Completo.";
     if(assunto === 'Teste') msg = "Olá! Gostaria de um teste grátis.";
-    if(assunto === 'TV') msg = "Olá! Gostaria de adicionar mais uma TV.";
-    if(assunto === 'Suporte') msg = "Olá, meu sistema está travando e já testei a internet.";
+    if(assunto === 'TV') msg = "Olá! Quero adicionar um ponto extra.";
+    if(assunto === 'Suporte') msg = "Olá, meu sistema está travando, pode me ajudar?";
     if(assunto === 'Pagamento') msg = "Olá! Fiz o pagamento, segue o comprovante:";
 
     const fone = "5521988373685";
     window.open(`https://wa.me/${fone}?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
-  // Copiar Pix
   function copy() {
-    const chave = "c83427a5-24e5-4244-9dc5-225536cbd356";
-    navigator.clipboard.writeText(chave).then(() => {
-      alert("Pix Copiado com sucesso!");
-    }).catch(() => {
-      alert("Chave: " + chave);
-    });
-  }
-
-  // Indicar Amigo
-  function indicarAmigo() {
-    const tel = document.getElementById('telIndicado').value;
-    if (tel.length < 10) {
-      alert("Por favor, digite o DDD e o número do seu amigo.");
-      return;
-    }
-    const msg = `Olá! Gostaria de indicar um amigo para conhecer o serviço. Número dele: ${tel}`;
-    window.open(`https://wa.me/5521988373685?text=${encodeURIComponent(msg)}`, '_blank');
-    document.getElementById('telIndicado').value = "";
-  }
-</script>
-
-</body>
-</html>
+    const chave = "c83427a
