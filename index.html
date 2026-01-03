@@ -15,19 +15,19 @@
     body { 
       margin: 0; 
       font-family: 'Segoe UI', Roboto, sans-serif; 
-      background: var(--bg-dark) url('https://share.google/eoVLs6H5NQIJI44lT') no-repeat center center fixed; 
+      /* Substituído por um link de imagem direta válido */
+      background: var(--bg-dark) url('https://images.unsplash.com/photo-1593784991095-a205039470b6?q=80&w=2070') no-repeat center center fixed; 
       background-size: cover;
       color: white; 
       display: flex; 
       justify-content: center; 
     }
     
-    /* Overlay para garantir leitura sobre a imagem */
     body::before {
       content: '';
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.8);
       z-index: 0;
     }
 
@@ -48,7 +48,7 @@
     .logo span { color: #f1c40f; }
 
     h1, h2 { font-size: 22px; margin-bottom: 20px; }
-    p { color: #ddd; line-height: 1.6; font-size: 16px; }
+    p { color: #ddd; line-height: 1.6; font-size: 16px; margin-bottom: 15px; }
 
     .buttons { display: grid; gap: 15px; margin-top: 20px; }
     .grid-2 { grid-template-columns: 1fr 1fr; }
@@ -147,10 +147,14 @@
     <h2>Conteúdo Travando?</h2>
     <p>Sabia que 90% desses problemas estão relacionados a oscilação da sua conexão de internet?</p>
     <p>Com alguns passos você pode resolver na hora!</p>
-    <p>1. Faça o teste de velocidada.<br>2. Aperte em INICIAR.<br></p>
-    </p>3. Terminando o teste, feche os anunacios.<br> 4. Agora mande uma foto, via whatsapp, do resultado.</p>
+    <p>
+      1. Faça o teste de velocidade.<br>
+      2. Aperte em INICIAR.<br>
+      3. Terminando o teste, feche os anúncios.<br>
+      4. Agora mande uma foto do resultado para o suporte.
+    </p>
     <div class="buttons">
-      <button onclick="window.location.href='https://minhaconexao.com.br'">TESTAR VELOCIDADE</button>
+      <button onclick="window.open('https://minhaconexao.com.br', '_blank')">TESTAR VELOCIDADE</button>
       <button class="wpp" onclick="wpp('Suporte')">AINDA PRECISO DE AJUDA</button>
       <button class="sec" onclick="nav('cliente')">VOLTAR</button>
     </div>
@@ -176,9 +180,9 @@
 
   <div id="semConexao" class="hidden">
     <h2>Sem Conexão?</h2>
-    <p>Verifique seu Wi-Fi ou se o cabo de rede está conectado corretamente atrás do aparelho de internet e na sua TV.</p>
-    <p>Após a verificação, deligue o roteador, tirando da tomada por 60 segundos e ligando novamente.</p>
-    <p>Abra o app da tv novamente e informe se funcionou.</p>
+    <p>Verifique seu Wi-Fi ou se o cabo de rede está conectado corretamente atrás do roteador e na sua TV.</p>
+    <p>Após a verificação, desligue o roteador tirando da tomada por 60 segundos e ligue novamente.</p>
+    <p>Abra o app da TV e informe se funcionou.</p>
     <button class="sec" style="width:100%" onclick="nav('cliente')">VOLTAR</button>
   </div>
 
@@ -204,13 +208,14 @@
 
   function copy() {
     const chave = "c83427a5-24e5-4244-9dc5-225536cbd356";
-    navigator.clipboard.writeText(chave).then(() => alert("Pix Copiado!"));
+    // Tenta usar a API moderna, se falhar usa fallback
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(chave).then(() => alert("Pix Copiado!"));
+    } else {
+        alert("Chave Pix: " + chave);
+    }
   }
 </script>
 
 </body>
 </html>
-
-
-
-
