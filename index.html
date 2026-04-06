@@ -113,6 +113,7 @@
 
   <div id="home">
     <h1>Sua TV, do seu jeito!</h1>
+    <h1>Com aquele preçinho!</h1>
     <div class="buttons grid-2">
       <button type="button" onclick="nav('cliente')">SOU CLIENTE</button>
       <button type="button" onclick="nav('naoCliente')">NÃO CLIENTE</button>
@@ -135,7 +136,7 @@
     <p>✅ Diversão para toda familia em um só lugar.</p>
     <p>✅ Ainda tem: Animes, novelas, doramas e muito mais.</p>
     <div class="buttons">
-      <button type="button" onclick="nav('planos')">VER NOSSOS PLANOS</button>
+      <button type="button" onclick="nav('planos')">VEJA NOSSOS PLANOS</button>
       <button type="button" class="wpp" onclick="wpp('Teste')">SOLICITAR TESTE GRÁTIS</button>
       <button type="button" class="sec" onclick="nav('home')">VOLTAR</button>
     </div>
@@ -144,14 +145,14 @@
   <div id="planos" class="hidden">
     <h2>Nossos Planos</h2>
     <div class="plan-card">
-      <strong>PLANO BÁSICO</strong>
+      <strong>PLANO TOP</strong>
       <small>CANAIS | FILMES | SÉRIES</small>
-      <button type="button" style="width:100%" onclick="wpp('Basico')">ASSINAR BÁSICO</button>
+      <button type="button" style="width:100%" onclick="wpp('Top')">ASSINAR TOP</button>
     </div>
     <div class="plan-card" style="border: 1px solid #f1c40f;">
-      <strong>PLANO COMPLETO ⭐</strong>
+      <strong>PLANO PREMIUM ⭐</strong>
       <small>CANAIS | FILMES | SÉRIES + PRIVÊ ADULTO</small>
-      <button type="button" style="width:100%; background: #8e44ad" onclick="wpp('Completo')">ASSINAR COMPLETO</button>
+      <button type="button" style="width:100%; background: #8e44ad" onclick="wpp('Premium')">ASSINAR PREMIUM</button>
     </div>
     <button type="button" class="sec" style="width:100%" onclick="nav('naoCliente')">VOLTAR</button>
   </div>
@@ -171,8 +172,8 @@
 
   <div id="travando" class="hidden">
     <h2>Conteúdo Travando?</h2>
-    <p>1. 90% dos problemas são oscilação da internet, antes de tudo desligue seu modem da tomada por 60 segundos e ligue novamente.</p>
-    <p>2. Abra o aplicativo da TV e veja se resolveu.</p>
+    <p>1. 90% dos problemas são oscilação da internet, desligue seu modem da tomada por 60 segundos e ligue novamente.</p>
+    <p>2. Abra o aplicativo da TV e veja se resolveu. Caso não tenha resolvido.</p>
     <p>3. Faça o teste de velocidade e veja como está a sua internet.</p>
     <div class="buttons">
       <button type="button" onclick="window.open('https://minhaconexao.com.br', '_blank')">TESTAR VELOCIDADE</button>
@@ -197,7 +198,7 @@
   <div id="semImagem" class="hidden">
     <h2>Sem Imagem?</h2>
     <p>Antes de qualquer ação:</p>
-    <p>1. Verifique a data e hora do seu aparelho.</p>
+    <p>1. Verifique a data e hora do seu aparelho, isso pode ser uma das causas prováveis.</p>
     <p>2. Execute a limpeza do cachê: Canais, filmes e séries.</p>
     <p>3. Desligue a TV da tomada por 1 minuto e ligue novamente.</p>
     <button type="button" class="sec" style="width:100%" onclick="nav('cliente')">VOLTAR</button>
@@ -205,7 +206,7 @@
 
   <div id="semConexao" class="hidden">
     <h2>Sem Conexão?</h2>
-    <p>Reinicie seu modem e confira os cabos, pode ser apenas mau contato.</p>
+    <p>Veja se a sua internet está funcionando. Reinicie seu modem e confira os cabos, pode ser apenas mau contato.</p>
     <button type="button" class="sec" style="width:100%" onclick="nav('cliente')">VOLTAR</button>
   </div>
 
@@ -228,10 +229,10 @@
   // Função WhatsApp
   function wpp(assunto) {
     let msg = "Olá, preciso de informações.";
-    if(assunto === 'Basico') msg = "Quero o Plano Básico.";
-    if(assunto === 'Completo') msg = "Quero o Plano Completo.";
+    if(assunto === 'Basico') msg = "Quero o Plano Top.";
+    if(assunto === 'Completo') msg = "Quero o Plano Premium.";
     if(assunto === 'Teste') msg = "Quero um teste grátis.";
-    if(assunto === 'TV') msg = "Quero adicionar uma TV.";
+    if(assunto === 'TV') msg = "Quero adicionar + uma TV.";
     if(assunto === 'Suporte') msg = "Meu sistema está travando.";
     if(assunto === 'Pagamento') msg = "Segue meu comprovante Pix:";
 
