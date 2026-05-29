@@ -1,281 +1,698 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Star Online - Premium</title>
-  <style>
-    :root { 
-      --primary: #2e86c1; 
-      --whatsapp: #27ae60; 
-      --accent: #f39c12; 
-      --bg-dark: #121212;
-    }
-    
-    body { 
-      margin: 0; 
-      font-family: 'Segoe UI', Roboto, sans-serif; 
-      background: var(--bg-dark) url('https://images.unsplash.com/photo-1601944177325-f8867652837f') no-repeat center center fixed; 
-      background-size: cover;
-      color: white; 
-      display: flex; 
-      justify-content: center;
-      overflow-x: hidden;
-    }
-    
-    /* Overlay fixo para não atrapalhar o clique */
-    .overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.82);
-      z-index: 1;
-      pointer-events: none; /* Isso garante que o clique passe pela camada preta */
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .app { 
-      position: relative;
-      z-index: 10; /* Mantém os botões acima de tudo */
-      background: rgba(20, 20, 20, 0.8); 
-      width: 100%; 
-      max-width: 420px; 
-      min-height: 100vh; 
-      padding: 25px; 
-      text-align: center; 
-      box-sizing: border-box;
-      backdrop-filter: blur(8px);
-    }
+<title>Star Online IPTV</title>
 
-    .logo { font-size: 30px; font-weight: bold; margin-bottom: 30px; letter-spacing: 2px; }
-    .logo span { color: #f1c40f; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    h1, h2 { font-size: 22px; margin-bottom: 20px; }
-    p { color: #ddd; line-height: 1.6; font-size: 16px; margin-bottom: 15px; }
+<style>
 
-    .buttons { display: grid; gap: 15px; margin-top: 15px; }
-    .grid-2 { grid-template-columns: 1fr 1fr; }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    button { 
-      padding: 18px 12px; 
-      border: none; 
-      border-radius: 12px; 
-      cursor: pointer; 
-      color: white; 
-      background: var(--primary); 
-      font-weight: bold; 
-      font-size: 15px;
-      transition: transform 0.2s;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-      text-transform: uppercase;
-      z-index: 20;
-      position: relative;
-    }
-    button:active { transform: scale(0.96); }
+body{
+font-family:'Poppins',sans-serif;
+background:#020817;
+color:#fff;
+overflow-x:hidden;
+}
 
-    .sec { background: #444; }
-    .wpp { background: var(--whatsapp); }
-    .pay { background: var(--accent); }
-    .danger { background: #c0392b; }
+/* FUNDO */
 
-    .plan-card {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 15px;
-      padding: 20px;
-      margin-top: 15px;
-      text-align: left;
-    }
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:
+linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.82)),
+url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1400&auto=format&fit=crop') center/cover;
+z-index:-1;
+}
 
-    input[type="tel"] {
-      width: 100%;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid #444;
-      background: rgba(0,0,0,0.5);
-      color: white;
-      margin-bottom: 10px;
-      box-sizing: border-box;
-      text-align: center;
-      font-size: 16px;
-    }
-    
-    .hidden { display: none !important; }
-    strong { color: #fff; display: block; font-size: 18px; margin-bottom: 8px; }
-    small { color: #aaa; display: block; margin-bottom: 15px; }
-    code { display: block; background: #000; padding: 15px; border-radius: 8px; word-break: break-all; color: #f1c40f; margin: 15px 0; border: 1px dashed #555; }
-  </style>
+/* APP */
+
+.app{
+width:100%;
+max-width:430px;
+margin:auto;
+padding-bottom:120px;
+}
+
+/* HERO */
+
+.hero{
+padding:20px;
+position:relative;
+}
+
+.logo{
+font-size:34px;
+font-weight:800;
+line-height:1;
+}
+
+.logo span{
+color:#FFD700;
+}
+
+.hero-banner{
+margin-top:18px;
+background:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.7)),
+url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop') center/cover;
+border-radius:26px;
+padding:26px 22px;
+min-height:340px;
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+box-shadow:0 10px 40px rgba(0,0,0,.5);
+}
+
+.badge{
+background:#FFD700;
+color:#111;
+font-size:12px;
+font-weight:700;
+padding:6px 12px;
+border-radius:40px;
+display:inline-block;
+margin-bottom:12px;
+width:max-content;
+}
+
+.hero-banner h1{
+font-size:38px;
+line-height:1.1;
+font-weight:800;
+}
+
+.hero-banner h1 span{
+color:#FFD700;
+}
+
+.hero-banner p{
+margin-top:14px;
+font-size:14px;
+line-height:1.7;
+opacity:.95;
+}
+
+/* EVENTOS */
+
+.events{
+padding:0 20px;
+margin-top:18px;
+}
+
+.event-card{
+background:linear-gradient(135deg,#0039a6,#0077ff);
+border-radius:22px;
+padding:18px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.event-card h2{
+font-size:22px;
+font-weight:800;
+}
+
+.event-card p{
+font-size:13px;
+margin-top:6px;
+line-height:1.5;
+}
+
+/* FILMES */
+
+.movies{
+padding:20px;
+overflow:hidden;
+}
+
+.movies-title{
+font-size:22px;
+font-weight:700;
+margin-bottom:14px;
+}
+
+.slider{
+display:flex;
+gap:14px;
+width:max-content;
+animation:carousel 18s linear infinite;
+}
+
+.slider:hover{
+animation-play-state:paused;
+}
+
+@keyframes carousel{
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+}
+
+.movie{
+min-width:170px;
+height:250px;
+border-radius:20px;
+overflow:hidden;
+position:relative;
+box-shadow:0 10px 30px rgba(0,0,0,.5);
+flex-shrink:0;
+}
+
+.movie img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.4s;
+}
+
+.movie:hover img{
+transform:scale(1.08);
+}
+
+/* BOTÕES */
+
+.buttons{
+padding:0 20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+button{
+border:none;
+border-radius:20px;
+padding:18px;
+font-size:14px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+color:#fff;
+}
+
+button:hover{
+transform:translateY(-2px);
+}
+
+button:active{
+transform:scale(.96);
+}
+
+.primary{
+background:linear-gradient(135deg,#005eff,#00c3ff);
+}
+
+.whatsapp{
+background:linear-gradient(135deg,#00c853,#009624);
+}
+
+.payment{
+background:linear-gradient(135deg,#FFD700,#ff9800);
+color:#111;
+}
+
+.purple{
+background:linear-gradient(135deg,#7b1fff,#b517ff);
+}
+
+.support{
+background:#10182c;
+border:1px solid rgba(255,255,255,.06);
+}
+
+.full{
+grid-column:1/-1;
+}
+
+/* PLANOS */
+
+.plans{
+padding:20px;
+}
+
+.plan{
+margin-top:18px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.06);
+border-radius:24px;
+padding:20px;
+transition:.3s;
+}
+
+.plan:hover{
+transform:translateY(-4px);
+border-color:rgba(255,215,0,.4);
+}
+
+.plan h3{
+font-size:26px;
+font-weight:800;
+}
+
+.price{
+font-size:42px;
+font-weight:800;
+color:#FFD700;
+margin:14px 0;
+}
+
+.plan ul{
+list-style:none;
+line-height:2.1;
+font-size:14px;
+opacity:.95;
+}
+
+/* BENEFÍCIOS */
+
+.benefits{
+margin-top:18px;
+padding:16px;
+border-radius:18px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.06);
+}
+
+.benefits h4{
+font-size:16px;
+margin-bottom:10px;
+color:#FFD700;
+}
+
+.benefits li{
+list-style:none;
+font-size:14px;
+line-height:2;
+}
+
+/* PIX */
+
+.pix{
+padding:20px;
+}
+
+.pix-box{
+background:#0f172a;
+padding:20px;
+border-radius:22px;
+word-break:break-all;
+margin-top:18px;
+font-size:15px;
+line-height:1.8;
+border:1px solid rgba(255,255,255,.06);
+}
+
+/* FOOTER */
+
+.footer{
+text-align:center;
+padding:30px 20px;
+font-size:12px;
+opacity:.6;
+}
+
+/* WHATS FIXO */
+
+.float{
+position:fixed;
+bottom:22px;
+right:22px;
+width:68px;
+height:68px;
+border-radius:50%;
+background:#00c853;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:34px;
+text-decoration:none;
+color:#fff;
+box-shadow:0 10px 30px rgba(0,0,0,.5);
+z-index:999;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:380px){
+
+.hero-banner h1{
+font-size:30px;
+}
+
+.movie{
+min-width:150px;
+height:220px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-<div class="overlay"></div>
-
 <div class="app">
-  <div class="logo">STAR <span>ONLINE</span></div>
 
-  <div id="home">
-    <h1>Sua TV, do seu jeito!</h1>
-    <h1>Com aquele precinho irresistível!</h1>
-    <div class="buttons grid-2">
-      <button type="button" onclick="nav('cliente')">SOU CLIENTE</button>
-      <button type="button" onclick="nav('naoCliente')">NÃO CLIENTE</button>
-    </div>
-    <div class="buttons">
-      <button type="button" class="wpp" onclick="wpp('Atendimento')">FALAR COM ATENDENTE</button>
-      <button type="button" class="pay" onclick="nav('pagamento')">PAGAMENTO PIX</button>
-    </div>
-    <div class="plan-card" style="text-align: center; border: 1px solid var(--primary); margin-top: 25px;">
-      <strong style="color: var(--primary);">INDIQUE UM AMIGO</strong>
-      <p style="font-size: 13px;">Indique e ganhe mensalidade grátis!</p>
-      <input type="tel" id="telIndicado" placeholder="DDD + Número">
-      <button type="button" class="sec" style="width: 100%; padding: 12px;" onclick="indicarAmigo()">ENVIAR INDICAÇÃO</button>
-    </div>
-  </div>
+<!-- HERO -->
 
-  <div id="naoCliente" class="hidden">
-    <h2>Bem vindo!😃</h2>
-    <h2>Aqui você encontra.</h2>
-    <p>✅ CANAIS, FILMES e SÉRIES</p>
-    <p>✅ Imagens em HD, FHD e 4K.</p>
-    <p>✅ Diversão para toda familia em um só lugar.</p>
-    <p>✅ Ainda tem: Anime, Novela, Dorama e muito mais.</p>
-    <div class="buttons">
-      <button type="button" onclick="nav('planos')">VEJA NOSSOS PLANOS</button>
-      <button type="button" class="wpp" onclick="wpp('Teste')">SOLICITAR TESTE GRÁTIS</button>
-      <button type="button" class="sec" onclick="nav('home')">VOLTAR</button>
-      <h1>No vencimento de sua recarga, um novo credito deve ser inserido para garantir a continuidade do serviço por mais 30 dias.</h1>
-    </div>
-  </div>
+<div class="hero">
 
-  <div id="planos" class="hidden">
-    <h2>Escolha o seu Plano</h2>
-    <div class="plan-card">
-      <strong>PLANO TOP</strong>
-      <small>CANAIS | FILMES | SÉRIES</small>
-      <button type="button" style="width:100%" onclick="wpp('Top')">ASSINAR TOP</button>
-    </div>
-    <div class="plan-card" style="border: 1px solid #f1c40f;">
-      <strong>PLANO PREMIUM ⭐</strong>
-      <small>CANAIS | FILMES | SÉRIES + PRIVÊ ADULTO</small>
-      <button type="button" style="width:100%; background: #8e44ad" onclick="wpp('Premium')">ASSINAR PREMIUM</button>
-    </div>
-    <button type="button" class="sec" style="width:100%" onclick="nav('naoCliente')">VOLTAR</button>
-  </div>
+<div class="logo">
+Star <span>Online</span>
+</div>
 
-  <div id="cliente" class="hidden">
-    <h2>Suporte ao Cliente</h2>
-    <h2>24h, 7 dias por semana</h2>
-    <h2>Diga o que está acontecendo?</h2>
-    <div class="buttons grid-2">
-      <button type="button" onclick="nav('semImagem')">SEM IMAGEM</button>
-      <button type="button" onclick="nav('semConexao')">SEM CONEXÃO</button>
-    </div>
-    <div class="buttons">
-      <button type="button" class="danger" onclick="nav('travando')">⚠️ ESTÁ TRAVANDO?</button>
-      <button type="button" class="wpp" onclick="wpp('TV')">ADICIONAR NOVA TV</button>
-      <button type="button" class="sec" onclick="nav('home')">VOLTAR</button>
-    </div>
-  </div>
+<div class="hero-banner">
 
-  <div id="travando" class="hidden">
-    <h2>Conteúdo Travando?</h2>
-    <p>1. 90% dos problemas são oscilação da internet, desligue seu modem da tomada por 60 segundos e ligue novamente.</p>
-    <p>2. Abra o aplicativo da TV e veja se resolveu. Caso não tenha resolvido.</p>
-    <p>3. Faça o teste de velocidade e veja como está a sua internet.</p>
-    <p>4. Use preferencialmente a conexão via cabo de rede. Isso melhora em 30% a potencia do sinal e elimina travamentos durante a conexão dos canais.</p>
-    <div class="buttons">
-      <button type="button" onclick="window.open('https://minhaconexao.com.br', '_blank')">TESTAR VELOCIDADE</button>
-      <button type="button" class="wpp" onclick="wpp('Suporte')">PRECISO DE AJUDA</button>
-      <button type="button" class="sec" onclick="nav('cliente')">VOLTAR</button>
-    </div>
-  </div>
+<div class="badge">
+🔥 IPTV PREMIUM 2026
+</div>
 
-  <div id="pagamento" class="hidden">
-    <h2>Pagamento Pix</h2>
-    <div class="plan-card" style="text-align: center;">
-      <p>Chave Aleatória:</p>
-      <code>c83427a5-24e5-4244-9dc5-225536cbd356</code>
-    </div>
-    <div class="buttons">
-      <button type="button" class="pay" onclick="copy()">COPIAR CHAVE PIX</button>
-      <button type="button" class="wpp" onclick="wpp('Pagamento')">ENVIAR COMPROVANTE</button>
-      <button type="button" class="sec" onclick="nav('home')">VOLTAR</button>
-    </div>
-  </div>
+<h1>
+SUA TV,<br>
+<span>DO SEU JEITO!</span>
+</h1>
 
-  <div id="semImagem" class="hidden">
-    <h2>Sem Imagem?</h2>
-    <p>Antes de qualquer ação:</p>
-    <p>1. Verifique a data e hora do seu aparelho, isso pode ser uma das causas prováveis.</p>
-    <p>2. Execute a limpeza do cachê: Canais, filmes e séries.</p>
-    <p>3. Desligue a TV da tomada por 1 minuto e ligue novamente.</p>
-    <button type="button" class="sec" style="width:100%" onclick="nav('cliente')">VOLTAR</button>
-  </div>
-
-  <div id="semConexao" class="hidden">
-    <h2>Sem Conexão?</h2>
-    <p>Veja se a sua internet está funcionando. Reinicie seu modem e confira os cabos, pode ser apenas mau contato.</p>
-    <button type="button" class="sec" style="width:100%" onclick="nav('cliente')">VOLTAR</button>
-  </div>
+<p>
+Assista Filmes, Séries, Canais ao vivo, Copa do Mundo 2026 e VNL 2026 em qualquer dispositivo.
+</p>
 
 </div>
 
+</div>
+
+<!-- EVENTOS -->
+
+<div class="events">
+
+<div class="event-card">
+
+<div>
+<h2>🏆 COPA DO MUNDO 2026</h2>
+<p>
+Brasil rumo ao Hexa + VNL 2026 ao vivo em HD e 4K.
+</p>
+</div>
+
+<div style="font-size:60px;">
+⚽
+</div>
+
+</div>
+
+</div>
+
+<!-- FILMES -->
+
+<div class="movies">
+
+<div class="movies-title">
+🍿 Lançamentos
+</div>
+
+<div class="slider">
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w500/mztdt3y6GBsJR69zHtszFezTCLT.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w600_and_h900_face/iILiJSRViTEcF23MHhGCbVm3mfW.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w600_and_h900_face/7FBnCkYzHlVHEtuzTEiGgFhs8EQ.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w600_and_h900_face/l08o8b3NAPxDzJca9ZF0fdQvbaz.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w600_and_h900_face/qaqAdyuk8Fcgfsj19Cj3OpJ8hN.jpg">
+</div>
+
+<!-- DUPLICADOS PARA LOOP -->
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w600_and_h900_face/dueFqKLvjftnELZaGYwY7xinfaI.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w500/mztdt3y6GBsJR69zHtszFezTCLT.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w500/yF1eOkaYvwiORauRCPWznV9xVvi.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w600_and_h900_face/7FBnCkYzHlVHEtuzTEiGgFhs8EQ.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w600_and_h900_face/l08o8b3NAPxDzJca9ZF0fdQvbaz.jpg">
+</div>
+
+<div class="movie">
+<img src="https://image.tmdb.org/t/p/w600_and_h900_face/qaqAdyuk8Fcgfsj19Cj3OpJ8hN.jpg">
+</div>
+
+</div>
+
+</div>
+
+<!-- BOTÕES -->
+
+<div class="buttons">
+
+<button class="primary" onclick="openWhats()">
+👤 JÁ SOU CLIENTE
+</button>
+
+<button class="whatsapp" onclick="openWhats()">
+💬 ATENDIMENTO
+</button>
+
+<button class="payment" onclick="copyPix()">
+💳 PAGAMENTO PIX
+</button>
+
+<button class="purple" onclick="openWhats('ASSINAR')">
+⭐ ASSINAR AGORA!
+</button>
+
+</div>
+
+<!-- SUPORTE -->
+
+<div class="plans">
+
+<div class="movies-title">
+🛠 Suporte Online
+</div>
+
+<div class="buttons" style="padding:0;">
+
+<button class="support" onclick="alert('70% dos problemas do IPTV é na conexão e são resolvidos, só precisam que reinicie a sua TV.')">
+📺 SEM IMAGEM
+</button>
+
+<button class="support" onclick="alert('Verifique os cabos de rede, desligue seu modem da tomada por 60 segundos. Isso irá resolver.')">
+📶 SEM CONEXÃO
+</button>
+
+<button class="support" onclick="window.open('https://minhaconexao.com.br')">
+📡 TESTAR INTERNET
+</button>
+
+<button class="support" onclick="openWhats('ADICIONAR_TV')">
+➕ ADICIONAR OUTRA TV
+</button>
+
+</div>
+
+</div>
+
+<!-- PLANOS -->
+
+<div class="plans">
+
+<div class="movies-title">
+💎 Nossos Planos
+</div>
+
+<div class="plan">
+
+<h3>STAR TOP</h3>
+
+<div class="price">
+R$ 35,00
+</div>
+
+<ul>
+<li>✔ Canais ao vivo</li>
+<li>✔ Filmes e séries</li>
+<li>✔ Futebol ao vivo</li>
+<li>✔ Suporte 24h</li>
+</ul>
+
+<button class="primary" style="width:100%;margin-top:18px;"
+onclick="openWhats('STAR TOP')">
+ASSINAR AGORA
+</button>
+
+<div class="benefits">
+
+<h4>📋 Informações Importantes</h4>
+
+<ul>
+<li>🚀 Velocidade mínima: 50Mbps</li>
+<li>📶 Conexão via cabo de rede (preferencialmente)</li>
+<li>💰 Sistema pré-pago com recarga mensal</li>
+<li>❌ Sem multa por cancelamento</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="plan">
+
+<h3>STAR PREMIUM</h3>
+
+<div class="price">
+R$ 45,00
+</div>
+
+<ul>
+<li>✔ Canais ao vivo</li>
+<li>✔ Filmes ilimitados</li>
+<li>✔ Séries incríveis</li>
+<li>✔ Canais Adulto incluso 🔞</li>
+<li>✔ Qualidade FHD - 4K</li>
+</ul>
+
+<button class="whatsapp" style="width:100%;margin-top:18px;"
+onclick="openWhats('STAR PREMIUM')">
+ASSINAR STAR PREMIUM
+</button>
+
+</div>
+
+</div>
+
+<!-- PIX -->
+
+<div class="pix">
+
+<div class="movies-title">
+💠 Pagamento via Pix
+</div>
+
+<div class="pix-box">
+c83427a5-24e5-4244-9dc5-225536cbd356
+</div>
+
+<button class="payment"
+style="width:100%;margin-top:18px;"
+onclick="copyPix()">
+COPIAR CHAVE PIX
+</button>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+Star Tv Online © 2026
+</div>
+
+</div>
+
+<!-- BOTÃO FIXO -->
+
+<a
+class="float"
+href="https://wa.me/5521988373685"
+target="_blank">
+💬
+</a>
+
 <script>
-  // Função de navegação corrigida
-  function nav(id) {
-    const telas = ['home', 'naoCliente', 'planos', 'cliente', 'travando', 'pagamento', 'semImagem', 'semConexao'];
-    telas.forEach(t => {
-      const el = document.getElementById(t);
-      if (el) el.classList.add('hidden');
-    });
-    
-    const destino = document.getElementById(id);
-    if (destino) destino.classList.remove('hidden');
-    window.scrollTo(0,0);
-  }
 
-  // Função WhatsApp
-  function wpp(assunto) {
-    let msg = "Olá, preciso de informações.";
-    if(assunto === 'Basico') msg = "Quero o Plano Top.";
-    if(assunto === 'Completo') msg = "Quero o Plano Premium.";
-    if(assunto === 'Teste') msg = "Quero um teste grátis.";
-    if(assunto === 'TV') msg = "Quero adicionar + uma TV.";
-    if(assunto === 'Suporte') msg = "Meu sistema está travando.";
-    if(assunto === 'Pagamento') msg = "Segue meu comprovante Pix:";
+/* WHATSAPP */
 
-    const fone = "5521988373685";
-    window.open("https://wa.me/" + fone + "?text=" + encodeURIComponent(msg), '_blank');
-  }
+function openWhats(plano){
 
-  // Função Copiar
-  function copy() {
-    const chave = "c83427a5-24e5-4244-9dc5-225536cbd356";
-    const tempInput = document.createElement("input");
-    tempInput.value = chave;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    document.execCommand("copy");
-    document.body.removeChild(tempInput);
-    alert("Chave Pix Copiada!");
-  }
+let msg = 'Olá, quero teste grátis';
 
-  // Função Indicar
-  function indicarAmigo() {
-    const tel = document.getElementById('telIndicado').value;
-    if (tel.length < 8) {
-      alert("Digite o número do amigo.");
-      return;
-    }
-    const msg = "Gostaria de indicar um amigo: " + tel;
-    window.open("https://wa.me/5521988373685?text=" + encodeURIComponent(msg), '_blank');
-    document.getElementById('telIndicado').value = "";
-  }
+if(plano === 'STAR TOP'){
+msg = 'Olá, quero assinar o Plano Star Top';
+}
+
+if(plano === 'STAR PREMIUM'){
+msg = 'Olá, quero assinar o Plano Star Premium';
+}
+
+if(plano === 'ADICIONAR_TV'){
+msg = 'Olá, quero adicionar mais uma TV';
+}
+
+if(plano === 'ASSINAR'){
+msg = 'ASSINAR';
+}
+
+window.location.href =
+`https://wa.me/5521988373685?text=${encodeURIComponent(msg)}`;
+
+}
+
+/* PIX */
+
+function copyPix(){
+
+navigator.clipboard.writeText(
+'c83427a5-24e5-4244-9dc5-225536cbd356'
+);
+
+alert('Chave PIX copiada com sucesso!');
+
+}
+
 </script>
 
 </body>
 </html>
-
-
-
-
 
 
