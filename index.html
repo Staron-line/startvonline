@@ -376,8 +376,13 @@ opacity:.6;
 }
 
 .tabs{
-    gap:6px;
-    padding:10px;
+    display:flex;
+    gap:10px;
+    padding:12px;
+}
+
+.tab-btn{
+    flex:1;
 }
 
 .tab-btn{
@@ -400,6 +405,19 @@ opacity:.6;
     font-size:17px;
 }
 
+.plans-home{
+    padding:20px;
+}
+
+.home-payment{
+    display:block !important;
+    width:90% !important;
+    max-width:320px !important;
+    margin:25px auto !important;
+    padding:20px;
+    font-size:18px;
+    font-weight:800;
+    text-align:center;
 }
 </style>
 </head>
@@ -410,7 +428,6 @@ opacity:.6;
 
 <div class="tabs">
 <button class="tab-btn active" onclick="openTab('home',this)">🏠 Home</button>
-<button class="tab-btn" onclick="openTab('planos',this)">💎 Planos</button>
 <button class="tab-btn" onclick="openTab('pagamento',this)">💳 PIX</button>
 <button class="tab-btn" onclick="openTab('suporte',this)">💬 Suporte</button>
 </div>
@@ -460,72 +477,70 @@ opacity:.6;
 ⭐ ASSINAR AGORA
 </button>
 
+<div class="plans-home">
+
+    <div class="plan">
+        <h3>STAR TOP</h3>
+        <div class="price">R$ 35,00</div>
+
+        <ul>
+            <li>✅ Canais ao vivo</li>
+            <li>✅ Filmes e séries</li>
+            <li>✅ Futebol ao vivo</li>
+            <li>✅ Suporte 24h</li>
+        </ul>
+
+        <button class="primary" style="width:100%;margin-top:18px;" onclick="openWhats('STAR TOP')">
+            ASSINAR AGORA
+        </button>
+    </div>
+
+    <div class="plan">
+        <h3>STAR PREMIUM</h3>
+        <div class="price">R$ 45,00</div>
+
+        <ul>
+            <li>✅ Canais ao vivo</li>
+            <li>✅ Filmes e séries</li>
+            <li>✅ Futebol ao vivo</li>
+            <li>✅ Conteúdo Adulto 🔞</li>
+            <li>✅ Suporte 24h</li>
+        </ul>
+
+        <button class="primary" style="width:100%;margin-top:18px;" onclick="openWhats('STAR PREMIUM')">
+            ASSINAR AGORA
+        </button>
+    </div>
+
+   <div style="text-align:center;">
+    <button class="payment home-payment" onclick="openPixModal()">
+        💳 PAGAMENTO PIX
+    </button>
+</div>
+
+</div>
+
 </div>
 
 <!-- PLANOS -->
 
-<div id="planos" class="tab-content">
-
-<div class="plans">
-
-<div class="movies-title">💎 Nossos Planos</div>
-
-<div class="plan">
-<h3>STAR TOP</h3>
-<div class="price">R$ 35,00</div>
-
-<ul>
-<li>✅ Canais ao vivo</li>
-<li>✅ Filmes e séries</li>
-<li>✅ Futebol ao vivo</li>
-<li>✅ Suporte 24h</li>
-</ul>
-
-<button class="primary" style="width:100%;margin-top:18px;" onclick="openWhats('STAR TOP')">
-ASSINAR AGORA
-</button>
-</div>
-
-<div class="plan">
-<h3>STAR PREMIUM</h3>
-<div class="price">R$ 45,00</div>
-
-<ul>
-<li>✅ Canais ao vivo</li>
-<li>✅ Filmes e séries</li>
-<li>✅ Futebol ao vivo</li>
-<li>✅ Conteúdo Adulto 🔞</li>
-<li>✅ Suporte 24h</li>
-</ul>
-
-<button class="primary" style="width:100%;margin-top:18px;" onclick="openWhats('STAR PREMIUM')">
-ASSINAR AGORA
-</button>
-</div>
-
-</div>
-
-</div>
-
-<!-- PIX -->
-
 <div id="pagamento" class="tab-content">
 
-<div class="plans">
-<div class="plan">
+    <div class="plans">
+        <div class="plan">
 
-<h3>💳 Pagamento PIX</h3>
+            <h3>💳 Pagamento PIX</h3>
 
-<p style="margin-top:12px">
-Após o pagamento envie o comprovante pelo WhatsApp.
-</p>
+            <p style="margin-top:12px">
+                Após o pagamento envie o comprovante pelo WhatsApp.
+            </p>
 
-<button class="payment" style="width:100%;margin-top:20px;" onclick="openPixModal()">
-ABRIR PAGAMENTO PIX
-</button>
+            <button class="payment" style="width:100%;margin-top:20px;" onclick="openPixModal()">
+                ABRIR PAGAMENTO PIX
+            </button>
 
-</div>
-</div>
+        </div>
+    </div>
 
 </div>
 
@@ -674,7 +689,6 @@ pixVisible
 </script>
 
 </body>
-</html>
 </html>
 
 
