@@ -23,8 +23,6 @@ color:#fff;
 overflow-x:hidden;
 }
 
-/* FUNDO */
-
 body::before{
 content:'';
 position:fixed;
@@ -35,26 +33,61 @@ url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1400&au
 z-index:-1;
 }
 
-/* APP */
-
 .app{
 width:100%;
 max-width:430px;
-margin:auto;
-padding-bottom:120px;
+margin:0 auto;
+padding-bottom:15px;
+}
+
+/* ABAS */
+
+.tabs{
+position:sticky;
+top:0;
+z-index:500;
+display:flex;
+gap:8px;
+padding:12px;
+background:#020817;
+}
+
+.tab-btn{
+flex:1;
+border:none;
+padding:12px;
+border-radius:14px;
+background:#10182c;
+color:#fff;
+font-size:12px;
+font-weight:700;
+cursor:pointer;
+}
+
+.tab-btn.active{
+background:linear-gradient(135deg,#005eff,#00c3ff);
+}
+
+.tab-content{
+display:none;
+}
+
+.tab-content.active{
+display:block;
 }
 
 /* HERO */
 
-.hero{
+.hero,
+.events,
+.movies,
+.plans{
 padding:20px;
-position:relative;
 }
 
 .logo{
 font-size:34px;
 font-weight:800;
-line-height:1;
 }
 
 .logo span{
@@ -68,11 +101,10 @@ linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.7)),
 url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop') center/cover;
 border-radius:26px;
 padding:26px 22px;
-min-height:340px;
+min-height:220px;
 display:flex;
 flex-direction:column;
 justify-content:flex-end;
-box-shadow:0 10px 40px rgba(0,0,0,.5);
 }
 
 .badge{
@@ -84,12 +116,10 @@ padding:6px 12px;
 border-radius:40px;
 display:inline-block;
 margin-bottom:12px;
-width:max-content;
 }
 
 .hero-banner h1{
 font-size:38px;
-line-height:1.1;
 font-weight:800;
 }
 
@@ -99,46 +129,21 @@ color:#FFD700;
 
 .hero-banner p{
 margin-top:14px;
-font-size:14px;
 line-height:1.7;
-opacity:.95;
 }
 
-/* EVENTOS */
-
-.events{
-padding:0 20px;
-margin-top:18px;
-}
+/* EVENTO */
 
 .event-card{
 background:linear-gradient(135deg,#0039a6,#0077ff);
 border-radius:22px;
 padding:18px;
 display:flex;
-align-items:center;
 justify-content:space-between;
-gap:12px;
-box-shadow:0 10px 30px rgba(0,0,0,.4);
-}
-
-.event-card h2{
-font-size:22px;
-font-weight:800;
-}
-
-.event-card p{
-font-size:13px;
-margin-top:6px;
-line-height:1.5;
+align-items:center;
 }
 
 /* FILMES */
-
-.movies{
-padding:20px;
-overflow:hidden;
-}
 
 .movies-title{
 font-size:22px;
@@ -158,13 +163,8 @@ animation-play-state:paused;
 }
 
 @keyframes carousel{
-0%{
-transform:translateX(0);
-}
-
-100%{
-transform:translateX(-50%);
-}
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
 }
 
 .movie{
@@ -172,20 +172,12 @@ min-width:170px;
 height:250px;
 border-radius:20px;
 overflow:hidden;
-position:relative;
-box-shadow:0 10px 30px rgba(0,0,0,.5);
-flex-shrink:0;
 }
 
 .movie img{
 width:100%;
 height:100%;
 object-fit:cover;
-transition:.4s;
-}
-
-.movie:hover img{
-transform:scale(1.08);
 }
 
 /* BOTÕES */
@@ -197,23 +189,25 @@ grid-template-columns:1fr 1fr;
 gap:14px;
 }
 
+.home-sign{
+    display:block;
+    width:90%;
+    max-width:320px;
+    margin:25px auto;
+    padding:22px;
+    font-size:18px;
+    font-weight:800;
+    text-align:center;
+}
+
 button{
 border:none;
 border-radius:20px;
 padding:18px;
-font-size:14px;
+font-size:18px;
 font-weight:700;
 cursor:pointer;
-transition:.3s;
 color:#fff;
-}
-
-button:hover{
-transform:translateY(-2px);
-}
-
-button:active{
-transform:scale(.96);
 }
 
 .primary{
@@ -235,37 +229,15 @@ background:linear-gradient(135deg,#7b1fff,#b517ff);
 
 .support{
 background:#10182c;
-border:1px solid rgba(255,255,255,.06);
-}
-
-.full{
-grid-column:1/-1;
 }
 
 /* PLANOS */
 
-.plans{
-padding:20px;
-}
-
 .plan{
 margin-top:18px;
 background:rgba(255,255,255,.05);
-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,.06);
 border-radius:24px;
 padding:20px;
-transition:.3s;
-}
-
-.plan:hover{
-transform:translateY(-4px);
-border-color:rgba(255,215,0,.4);
-}
-
-.plan h3{
-font-size:26px;
-font-weight:800;
 }
 
 .price{
@@ -277,60 +249,73 @@ margin:14px 0;
 
 .plan ul{
 list-style:none;
-line-height:2.1;
-font-size:14px;
-opacity:.95;
+line-height:2;
 }
-
-/* BENEFÍCIOS */
 
 .benefits{
 margin-top:18px;
 padding:16px;
 border-radius:18px;
 background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.06);
 }
 
 .benefits h4{
-font-size:16px;
-margin-bottom:10px;
 color:#FFD700;
+margin-bottom:10px;
 }
 
-.benefits li{
-list-style:none;
-font-size:14px;
-line-height:2;
-}
+/* MODAL */
 
-/* PIX */
-
-.pix{
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+justify-content:center;
+align-items:center;
 padding:20px;
+z-index:999;
 }
 
-.pix-box{
+.modal-content{
 background:#0f172a;
-padding:20px;
-border-radius:22px;
-word-break:break-all;
-margin-top:18px;
-font-size:15px;
-line-height:1.8;
-border:1px solid rgba(255,255,255,.06);
-}
-
-/* FOOTER */
-
-.footer{
+padding:25px;
+border-radius:24px;
+width:100%;
+max-width:380px;
 text-align:center;
-padding:30px 20px;
-font-size:12px;
-opacity:.6;
+position:relative;
 }
 
-/* WHATS FIXO */
+.close{
+position:absolute;
+top:10px;
+right:16px;
+font-size:30px;
+cursor:pointer;
+}
+
+.pix-hidden{
+background:#111827;
+padding:14px;
+border-radius:12px;
+font-size:13px;
+margin:15px 0;
+word-break:break-all;
+}
+
+.pix-qrcode{
+width:220px;
+max-width:100%;
+margin:20px 0;
+border-radius:16px;
+}
+
+.full-btn{
+width:100%;
+}
+
+/* FLOAT */
 
 .float{
 position:fixed;
@@ -346,25 +331,76 @@ align-items:center;
 font-size:34px;
 text-decoration:none;
 color:#fff;
-box-shadow:0 10px 30px rgba(0,0,0,.5);
-z-index:999;
 }
 
-/* RESPONSIVO */
+.footer{
+text-align:center;
+padding:30px 20px;
+font-size:12px;
+opacity:.6;
+}
 
-@media(max-width:380px){
+.movies{
+    overflow:hidden;
+}
+
+@media (max-width:480px){
+
+.hero-banner{
+    min-height:190px;
+    padding:20px;
+}
 
 .hero-banner h1{
-font-size:30px;
+    font-size:30px;
+    line-height:1.1;
+}
+
+.hero-banner p{
+    font-size:14px;
+}
+
+.logo{
+    font-size:28px;
 }
 
 .movie{
-min-width:150px;
-height:220px;
+    min-width:140px;
+    height:210px;
+}
+
+.event-card{
+    flex-direction:column;
+    text-align:center;
+    gap:12px;
+}
+
+.tabs{
+    gap:6px;
+    padding:10px;
+}
+
+.tab-btn{
+    font-size:11px;
+    padding:10px 6px;
+}
+
+.price{
+    font-size:34px;
+}
+
+.float{
+    width:60px;
+    height:60px;
+    font-size:28px;
+}
+
+.home-sign{
+    width:92%;
+    font-size:17px;
 }
 
 }
-
 </style>
 </head>
 
@@ -372,247 +408,100 @@ height:220px;
 
 <div class="app">
 
-<!-- HERO -->
+<div class="tabs">
+<button class="tab-btn active" onclick="openTab('home',this)">🏠 Home</button>
+<button class="tab-btn" onclick="openTab('planos',this)">💎 Planos</button>
+<button class="tab-btn" onclick="openTab('pagamento',this)">💳 PIX</button>
+<button class="tab-btn" onclick="openTab('suporte',this)">💬 Suporte</button>
+</div>
+
+<!-- HOME -->
+
+<div id="home" class="tab-content active">
 
 <div class="hero">
-
-<div class="logo">
-Star <span>Online</span>
-</div>
+<div class="logo">Star <span>Online</span></div>
 
 <div class="hero-banner">
-
-<div class="badge">
-🔥 IPTV PREMIUM 2026
+<div class="badge">🔥 IPTV PREMIUM 2026</div>
+<h1>SUA TV,<br><span>DO SEU JEITO!</span></h1>
+<p>Assista filmes, séries, esportes e canais ao vivo.</p>
 </div>
-
-<h1>
-SUA TV,<br>
-<span>DO SEU JEITO!</span>
-</h1>
-
-<p>
-Assista: CANAIS | FILMES | SÉRIES - Copa do Mundo 2026 e VNL 2026 em qualquer dispositivo.
-</p>
-
 </div>
-
-</div>
-
-<!-- EVENTOS -->
 
 <div class="events">
-
 <div class="event-card">
-
 <div>
-<h2>🏆 COPA DO MUNDO 2026</h2>
-<p>
-BRASIL RUMO AO HEXA!!!
-<p>
-Ao vivo em HD e 4K.  
-</p>  
+<h2>🏆 COPA MUNDO 2026</h2>
+<p>Brasil rumo ao Hexa</p> 
+<div>🏆🏆🏆🏆🏆...🏆</div>
 </div>
-
-<div style="font-size:60px;">
-⚽
+<div style="font-size:60px">⚽</div>
 </div>
-
 </div>
-
-</div>
-
-<!-- FILMES -->
 
 <div class="movies">
-
-<div class="movies-title">
-🍿 Lançamentos
-</div>
+<div class="movies-title">🍿 Lançamentos</div>
 
 <div class="slider">
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg">
-<div class="overlay">Doctor Stranger</div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/b3WeTp42eJSRuE4UZfyPCOJW4c.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/iILiJSRViTEcF23MHhGCbVm3mfW.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/5YGxIzMxRdcTt4QtjlbV2wYRNlx.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/qaqAdyuk8Fcgfsj19Cj3OpJ8hN.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/3almrQT8GnrDjnQeWotdExjJhZm.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/bPue4NKPiGNrIbZFeOsZfnovFAM.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/1TzKDW1Sxm1EiUu0QUQfx8oZiJ5.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/xlelBCtee51bFM6vgc1AeYOLzkS.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/dueFqKLvjftnELZaGYwY7xinfaI.jpg"></div>
+</div>
 </div>
 
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w600_and_h900_face/b3WeTp42eJSRuE4UZfyPCOJW4c.jpg">
-<div class="overlay">Super Mário Galaxy</div>
-</div>
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w600_and_h900_face/iILiJSRViTEcF23MHhGCbVm3mfW.jpg">
-<div class="overlay">Mortal Kombat 2</div>
-</div>
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w600_and_h900_face/5YGxIzMxRdcTt4QtjlbV2wYRNlx.jpg">
-<div class="overlay">Coração Partido</div>
-</div>
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w600_and_h900_face/qaqAdyuk8Fcgfsj19Cj3OpJ8hN.jpg">
-<div class="overlay">A Empregada</div>
-</div>
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w600_and_h900_face/3almrQT8GnrDjnQeWotdExjJhZm.jpg">
-<div class="overlay">AVATAR Fogo e Cinzas</div>
-</div>
-
-<!-- DUPLICADOS PARA LOOP -->
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg">
-<div class="overlay">Doctor Stranger</div>
-</div>
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w600_and_h900_face/b3WeTp42eJSRuE4UZfyPCOJW4c.jpg">
-<div class="overlay">Super Mário Galaxy</div>
-</div>
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w600_and_h900_face/iILiJSRViTEcF23MHhGCbVm3mfW.jpg">
-<div class="overlay">Mortal Kombat 2</div>
-</div>
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w600_and_h900_face/5YGxIzMxRdcTt4QtjlbV2wYRNlx.jpg">
-<div class="overlay">Coração Partido</div>
-</div>
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w600_and_h900_face/qaqAdyuk8Fcgfsj19Cj3OpJ8hN.jpg">
-<div class="overlay">A Empregada</div>
-</div>
-
-<div class="movie">
-<img src="https://image.tmdb.org/t/p/w600_and_h900_face/3almrQT8GnrDjnQeWotdExjJhZm.jpg">
-<div class="overlay">AVATAR Fogo e Cinzas</div>
-</div>
-
-</div>
-
-</div>
-
-<!-- BOTÕES -->
-
-<div class="buttons">
-
-<button class="primary" onclick="openWhats()">
-👤 JÁ SOU CLIENTE
+<button class="purple home-sign" onclick="openWhats('ASSINAR')">
+⭐ ASSINAR AGORA
 </button>
-
-<button class="whatsapp" onclick="openWhats()">
-💬 ATENDIMENTO
-</button>
-
-<button class="payment" onclick="copyPix()">
-💳 PAGAMENTO PIX
-</button>
-
-<button class="purple" onclick="openWhats('ASSINAR')">
-⭐ ASSINAR AGORA!
-</button>
-
-</div>
-
-<!-- SUPORTE -->
-
-<div class="plans">
-
-<div class="movies-title">
-🛠 Suporte Online
-</div>
-
-<div class="buttons" style="padding:0;">
-
-<button class="support" onclick="alert('70% dos problemas do IPTV é na conexão e são resolvidos, só precisam que reinicie a sua TV.')">
-📺 SEM IMAGEM
-</button>
-
-<button class="support" onclick="alert('Verifique os cabos de rede, desligue seu modem da tomada por 60 segundos. Isso irá resolver.')">
-📶 SEM CONEXÃO
-</button>
-
-<button class="support" onclick="window.open('https://minhaconexao.com.br')">
-📡 TESTAR INTERNET
-</button>
-
-<button class="support" onclick="openWhats('ADICIONAR_TV')">
-➕ ADICIONAR OUTRA TV
-</button>
-
-</div>
 
 </div>
 
 <!-- PLANOS -->
 
+<div id="planos" class="tab-content">
+
 <div class="plans">
 
-<div class="movies-title">
-💎 Nossos Planos
-</div>
+<div class="movies-title">💎 Nossos Planos</div>
 
 <div class="plan">
-
 <h3>STAR TOP</h3>
-
-<div class="price">
-R$ 35,00
-</div>
+<div class="price">R$ 35,00</div>
 
 <ul>
-<li>✔ Canais ao vivo</li>
-<li>✔ Filmes e séries</li>
-<li>✔ Futebol ao vivo</li>
-<li>✔ Suporte 24h</li>
+<li>✅ Canais ao vivo</li>
+<li>✅ Filmes e séries</li>
+<li>✅ Futebol ao vivo</li>
+<li>✅ Suporte 24h</li>
 </ul>
 
-<button class="primary" style="width:100%;margin-top:18px;"
-onclick="openWhats('STAR TOP')">
+<button class="primary" style="width:100%;margin-top:18px;" onclick="openWhats('STAR TOP')">
 ASSINAR AGORA
 </button>
-
-<div class="benefits">
-
-<h4>📋 Informações Importantes</h4>
-
-<ul>
-<li>🚀 Velocidade mínima: 50Mbps</li>
-<li>📶 Conexão via cabo de rede (preferencialmente)</li>
-<li>💰 Sistema pré-pago com recarga mensal</li>
-<li>❌ Sem multa por cancelamento</li>
-</ul>
-
-</div>
-
 </div>
 
 <div class="plan">
-
 <h3>STAR PREMIUM</h3>
-
-<div class="price">
-R$ 45,00
-</div>
+<div class="price">R$ 45,00</div>
 
 <ul>
-<li>✔ Canais ao vivo</li>
-<li>✔ Filmes ilimitados</li>
-<li>✔ Séries incríveis</li>
-<li>✔ Canais Adulto incluso 🔞</li>
-<li>✔ Qualidade FHD - 4K</li>
+<li>✅ Canais ao vivo</li>
+<li>✅ Filmes e séries</li>
+<li>✅ Futebol ao vivo</li>
+<li>✅ Conteúdo Adulto 🔞</li>
+<li>✅ Suporte 24h</li>
 </ul>
 
-<button class="whatsapp" style="width:100%;margin-top:18px;"
-onclick="openWhats('STAR PREMIUM')">
-ASSINAR STAR PREMIUM
+<button class="primary" style="width:100%;margin-top:18px;" onclick="openWhats('STAR PREMIUM')">
+ASSINAR AGORA
 </button>
+</div>
 
 </div>
 
@@ -620,89 +509,172 @@ ASSINAR STAR PREMIUM
 
 <!-- PIX -->
 
-<div class="pix">
+<div id="pagamento" class="tab-content">
 
-<div class="movies-title">
-💠 Pagamento via Pix
+<div class="plans">
+<div class="plan">
+
+<h3>💳 Pagamento PIX</h3>
+
+<p style="margin-top:12px">
+Após o pagamento envie o comprovante pelo WhatsApp.
+</p>
+
+<button class="payment" style="width:100%;margin-top:20px;" onclick="openPixModal()">
+ABRIR PAGAMENTO PIX
+</button>
+
+</div>
 </div>
 
-<div class="pix-box">
-c83427a5-24e5-4244-9dc5-225536cbd356
 </div>
 
-<button class="payment"
-style="width:100%;margin-top:18px;"
-onclick="copyPix()">
-COPIAR CHAVE PIX
+<!-- SUPORTE -->
+
+<div id="suporte" class="tab-content">
+
+<div class="plans">
+<div class="plan">
+
+<h3>🎧 Central de Atendimento</h3>
+
+<p style="margin:15px 0">
+Suporte rápido para clientes e novos assinantes.
+</p>
+✅ Antes de chamar o atendimento, faça esses procedimento.
+<div>
+✅ Desligue sua Tv e a sua internet da tomada por 60 segundos.
+<div>
+✅ Ligue novamente e abra o aplicativo. Veja se está funcionando.
+
+</div>
+</div>
+
+</div>
+<button class="primary" style="width:100%;margin-top:12px;" onclick="openWhats()">
+👤 FALAR COM SUPORTE
+</button>
+
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+Star Online IPTV © 2026
+</div>
+
+</div>
+
+<!-- MODAL PIX -->
+
+<div id="pixModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closePixModal()">&times;</span>
+
+<h2>💳 Pagamento via PIX</h2>
+
+<img src="qrcode-pix.png" class="pix-qrcode">
+
+<div class="pix-hidden" id="pixText">
+••••••••••••••••••••••••••••••••••
+</div>
+
+<button class="payment full-btn" onclick="copyPix()">
+📋 COPIAR CHAVE PIX
+</button>
+
+<button class="support full-btn" style="margin-top:10px;" onclick="togglePix()">
+👁 Mostrar/Ocultar
 </button>
 
 </div>
 
-<!-- FOOTER -->
-
-<div class="footer">
-Star Tv Online © 2026
 </div>
 
-</div>
-
-<!-- BOTÃO FIXO -->
-
-<a
-class="float"
-href="https://wa.me/5521988373685"
-target="_blank">
+<a class="float" href="https://wa.me/5521988373685" target="_blank">
 💬
 </a>
 
 <script>
 
-/* WHATSAPP */
+const pixCompleta='c83427a5-24e5-4244-9dc5-225536cbd356';
+const pixMascarada='c83427a5-24e5-****-****-225536cbd356';
+
+let pixVisible=false;
+
+function openTab(id,btn){
+document.querySelectorAll('.tab-content').forEach(tab=>{
+tab.classList.remove('active');
+});
+
+document.querySelectorAll('.tab-btn').forEach(tab=>{
+tab.classList.remove('active');
+});
+
+document.getElementById(id).classList.add('active');
+btn.classList.add('active');
+}
 
 function openWhats(plano){
 
-let msg = 'Olá, quero teste grátis';
+let msg='Suporte';
 
-if(plano === 'JÁ SOU ASSINATE'){
-msg = 'Olá';
-}
-  
-if(plano === 'STAR TOP'){
-msg = 'Olá, quero assinar o Plano Star Top';
+if(plano==='STAR TOP'){
+msg='Olá, quero assinar o Plano Star Top';
 }
 
-if(plano === 'STAR PREMIUM'){
-msg = 'Olá, quero assinar o Plano Star Premium';
+if(plano==='STAR PREMIUM'){
+msg='Olá, quero assinar o Plano Star Premium';
 }
 
-if(plano === 'ADICIONAR_TV'){
-msg = 'Olá, quero adicionar mais uma TV';
+if(plano==='ASSINAR'){
+msg='Olá, quero assinar IPTV';
 }
 
-if(plano === 'ASSINAR AGORA'){
-msg = 'QUERO ASSINAR';
-}
-
-window.location.href =
+window.location.href=
 `https://wa.me/5521988373685?text=${encodeURIComponent(msg)}`;
-
 }
 
-/* PIX */
+function openPixModal(){
+document.getElementById('pixModal').style.display='flex';
+}
+
+function closePixModal(){
+document.getElementById('pixModal').style.display='none';
+}
+
+window.onclick=function(event){
+const modal=document.getElementById('pixModal');
+if(event.target===modal){
+modal.style.display='none';
+}
+}
 
 function copyPix(){
-
-navigator.clipboard.writeText(
-'c83427a5-24e5-4244-9dc5-225536cbd356'
-);
-
+navigator.clipboard.writeText(pixCompleta);
 alert('Chave PIX copiada com sucesso!');
+}
+
+function togglePix(){
+
+const campo=document.getElementById('pixText');
+
+pixVisible=!pixVisible;
+
+campo.innerText=
+pixVisible
+? pixMascarada
+: '••••••••••••••••••••••••••••••••••';
 
 }
 
 </script>
 
 </body>
+</html>
 </html>
 
 
