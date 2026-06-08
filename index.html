@@ -253,7 +253,7 @@ line-height:2;
 }
 
 .benefits{
-margin-top:18px;
+margin-top:28px;
 padding:16px;
 border-radius:18px;
 background:rgba(255,255,255,.04);
@@ -262,6 +262,10 @@ background:rgba(255,255,255,.04);
 .benefits h4{
 color:#FFD700;
 margin-bottom:10px;
+}
+
+.benefits ul{
+    padding-left: 20px;
 }
 
 /* MODAL */
@@ -442,7 +446,7 @@ opacity:.6;
 <div class="hero-banner">
 <div class="badge">🔥 IPTV PREMIUM 2026</div>
 <h1>SUA TV,<br><span>DO SEU JEITO!</span></h1>
-<p>Assista filmes, séries, esportes e canais ao vivo.</p>
+<p>Assista filmes, Séries, Esportes e Canais ao vivo.</p>
 </div>
 </div>
 
@@ -479,13 +483,29 @@ opacity:.6;
 
 <div class="plans-home">
 
-    <div class="plan">
-        <h3>STAR TOP</h3>
-        <div class="price">R$ 35,00</div>
+   <div class="plan">
+        <h3>STANDARD 🌟</h3>
+        <div class="price"></div>
 
         <ul>
-            <li>✅ Canais ao vivo</li>
-            <li>✅ Filmes e séries</li>
+            <li>✅ Canais ao vivo SD - HD</li>
+            <li>✅ Filmes e Séries</li>
+            <li>✅ Futebol ao vivo</li>
+            <li>✅ Suporte 24h</li>
+        </ul>
+
+        <button class="primary" style="width:100%;margin-top:18px;" onclick="openWhats('STANDARD')">
+            ASSINAR AGORA
+        </button>
+    </div>
+
+    <div class="plan">
+        <h3>STAR TOP 🌟🌟</h3>
+        <div class="price"></div>
+
+        <ul>
+            <li>✅ Canais ao vivo HD - FHD</li>
+            <li>✅ Filmes e Séries</li>
             <li>✅ Futebol ao vivo</li>
             <li>✅ Suporte 24h</li>
         </ul>
@@ -496,12 +516,12 @@ opacity:.6;
     </div>
 
     <div class="plan">
-        <h3>STAR PREMIUM</h3>
-        <div class="price">R$ 45,00</div>
+        <h3>STAR PREMIUM 🌟🌟🌟</h3>
+        <div class="price"></div>
 
         <ul>
             <li>✅ Canais ao vivo</li>
-            <li>✅ Filmes e séries</li>
+            <li>✅ Filmes e Séries</li>
             <li>✅ Futebol ao vivo</li>
             <li>✅ Conteúdo Adulto 🔞</li>
             <li>✅ Suporte 24h</li>
@@ -510,6 +530,19 @@ opacity:.6;
         <button class="primary" style="width:100%;margin-top:18px;" onclick="openWhats('STAR PREMIUM')">
             ASSINAR AGORA
         </button>
+    </div>
+
+    <div class="benefits">
+        <h4>📋 Informações Importantes</h4>
+        <ul>
+           <li>🚀 Velocidade mínima: 50Mbps</li>
+           <li>📶 Conexão via cabo de rede (preferencialmente)</li>
+           <li>💰 Sistema pré-pago com recarga mensal</li>
+           <li>❌ Sem multa por cancelamento</li>
+        </ul>
+
+    </div>
+
     </div>
 
    <div style="text-align:center;">
@@ -685,6 +718,11 @@ pixVisible
 : '••••••••••••••••••••••••••••••••••';
 
 }
+
+</script>
+
+</body>
+</html>
 
 </script>
 
