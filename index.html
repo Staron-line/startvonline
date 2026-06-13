@@ -153,7 +153,7 @@ margin-bottom:14px;
 
 .slider{
 display:flex;
-gap:14px;
+gap:18px;
 width:max-content;
 animation:carousel 30s linear infinite;
 }
@@ -348,7 +348,39 @@ opacity:.6;
     overflow:hidden;
 }
 
+.indication-box{
+    margin-top:30px;
+    text-align:center;
+}
+
+.indication-text{
+    margin:12px 0 18px;
+    font-size:14px;
+    opacity:.9;
+    line-height:1.6;
+}
+
+.indication-input{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    background:#111827;
+    color:#fff;
+    font-size:16px;
+    margin-bottom:14px;
+    outline:none;
+}
+
+.indication-input:focus{
+    border:2px solid #7b1fff;
+}
+
+.indication-btn{
+    width:100%;
+}
 @media (max-width:480px){
+}
 
 .hero-banner{
     min-height:190px;
@@ -423,6 +455,7 @@ opacity:.6;
     font-weight:800;
     text-align:center;
 }
+}
 </style>
 </head>
 
@@ -441,13 +474,27 @@ opacity:.6;
 <div id="home" class="tab-content active">
 
 <div class="hero">
-<div class="logo">Star <span>Online</span></div>
-
+<div class="logo">Star <span>TV On-line</span></div>
 <div class="hero-banner">
-<div class="badge">🔥 IPTV PREMIUM 2026</div>
-<h1>SUA TV,<br><span>DO SEU JEITO!</span></h1>
-<p>Assista filmes, Séries, Esportes e Canais ao vivo.</p>
+    <div class="badge">🔥 IPTV PREMIUM 2026</div>
+
+    <h1>
+        SUA TV,<br>
+        <span>DO SEU JEITO!</span>
+    </h1>
+
+    <p>
+        Filmes, Séries, Futebol ao vivo e muito mais.
+    </p>
 </div>
+<div class="benefits" style="margin-top:18px;">
+    <h4>⭐ Clientes Satisfeitos</h4>
+    <ul>
+        <li>✅ Ativação rápida</li>
+        <li>✅ Suporte On-line 24h</li>
+        <li>✅ Filmes, Séries e Futebol ao vivo</li>
+        <li>✅ Compatível com TV Smart, TV Box e Celular</li>
+    </ul>
 </div>
 
 <div class="events">
@@ -465,6 +512,7 @@ opacity:.6;
 <div class="movies-title">🍿 Lançamentos</div>
 
 <div class="slider">
+<!-- Primeira sequência -->
 <div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/b3WeTp42eJSRuE4UZfyPCOJW4c.jpg"></div>
 <div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/iILiJSRViTEcF23MHhGCbVm3mfW.jpg"></div>
 <div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/5YGxIzMxRdcTt4QtjlbV2wYRNlx.jpg"></div>
@@ -474,11 +522,22 @@ opacity:.6;
 <div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/1TzKDW1Sxm1EiUu0QUQfx8oZiJ5.jpg"></div>
 <div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/xlelBCtee51bFM6vgc1AeYOLzkS.jpg"></div>
 <div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/dueFqKLvjftnELZaGYwY7xinfaI.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/hSvhZRkbYD9crC4nqy8uCk9EdFH.jpg"></div>
+<!-- Segunda sequência -->
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/b3WeTp42eJSRuE4UZfyPCOJW4c.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/iILiJSRViTEcF23MHhGCbVm3mfW.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/5YGxIzMxRdcTt4QtjlbV2wYRNlx.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/qaqAdyuk8Fcgfsj19Cj3OpJ8hN.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/3almrQT8GnrDjnQeWotdExjJhZm.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/bPue4NKPiGNrIbZFeOsZfnovFAM.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/1TzKDW1Sxm1EiUu0QUQfx8oZiJ5.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/xlelBCtee51bFM6vgc1AeYOLzkS.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/dueFqKLvjftnELZaGYwY7xinfaI.jpg"></div>
+<div class="movie"><img src="https://image.tmdb.org/t/p/w600_and_h900_face/hSvhZRkbYD9crC4nqy8uCk9EdFH.jpg"></div>
 </div>
 </div>
-
 <button class="purple home-sign" onclick="openWhats('ASSINAR')">
-⭐ ASSINAR AGORA
+⭐ QUERO ASSINAR AGORA
 </button>
 
 <div class="plans-home">
@@ -499,10 +558,13 @@ opacity:.6;
         </button>
     </div>
 
-    <div class="plan">
-        <h3>STAR TOP 🌟🌟</h3>
-        <div class="price"></div>
-
+</div>
+<div class="plan" style="
+    border:4px solid #FFD700;
+    box-shadow:0 0 20px rgba(255,215,0,.3);
+">
+    <h3>STAR TOP 🌟🌟</h3>
+    <div class="price">Mais vendido</div>
         <ul>
             <li>✅ Canais ao vivo HD - FHD</li>
             <li>✅ Filmes e Séries</li>
@@ -540,11 +602,32 @@ opacity:.6;
            <li>💰 Sistema pré-pago com recarga mensal</li>
            <li>❌ Sem multa por cancelamento</li>
         </ul>
+   </div>
+   <div class="plan indication-box">
 
-    </div>
+    <h3>🎁 INDIQUE UM AMIGO</h3>
 
-    </div>
+    <p class="indication-text">
+        Indique um amigo e ganhe bônus na sua assinatura.
+        Não esqueça de informar seu nome.
+    </p>
 
+    <input
+        type="tel"
+        id="telIndicado"
+        class="indication-input"
+        placeholder="Nome + DDD + Número"
+    >
+
+    <button
+        class="purple indication-btn"
+        onclick="indicarAmigo()"
+    >
+        🚀 ENVIAR INDICAÇÃO
+    </button>
+
+</div>
+   
    <div style="text-align:center;">
     <button class="payment home-payment" onclick="openPixModal()">
         💳 PAGAMENTO PIX
@@ -581,30 +664,35 @@ opacity:.6;
 
 <div id="suporte" class="tab-content">
 
-<div class="plans">
-<div class="plan">
+    <div class="plans">
 
-<h3>🎧 Central de Atendimento</h3>
+        <div class="plan">
 
-<p style="margin:15px 0">
-Suporte rápido para clientes e novos assinantes.
-</p>
-✅ Antes de chamar o atendimento, faça esses procedimento.
-<div>
-✅ Desligue sua Tv e a sua internet da tomada por 60 segundos.
-<div>
-✅ Ligue novamente e abra o aplicativo. Veja se está funcionando.
+            <h3>🎧 Central de Atendimento</h3>
 
-</div>
-</div>
+            <p style="margin:15px 0">
+                Suporte rápido para clientes e novos assinantes.
+            </p>
 
-</div>
-<button class="primary" style="width:100%;margin-top:12px;" onclick="openWhats()">
-👤 FALAR COM SUPORTE
-</button>
+            <p>✅ Antes de chamar o atendimento, faça estes procedimentos:</p>
 
-</div>
-</div>
+            <p>✅ Desligue sua TV e seu roteador da tomada por 60 segundos.</p>
+
+            <p>✅ Ligue novamente e abra o aplicativo.</p>
+
+            <p>✅ Verifique se o serviço voltou a funcionar.</p>
+
+            <button
+                class="primary"
+                style="width:100%;margin-top:20px;"
+                onclick="openWhats()"
+            >
+                👤 FALAR COM SUPORTE
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -668,22 +756,26 @@ btn.classList.add('active');
 
 function openWhats(plano){
 
-let msg='Suporte';
+    let msg = 'Olá, preciso de suporte';
 
-if(plano==='STAR TOP'){
-msg='Olá, quero assinar o Plano Star Top';
-}
+    if(plano === 'STANDARD'){
+        msg = 'Olá, quero assinar o Plano Standard';
+    }
 
-if(plano==='STAR PREMIUM'){
-msg='Olá, quero assinar o Plano Star Premium';
-}
+    if(plano === 'STAR TOP'){
+        msg = 'Olá, quero assinar o Plano Star Top';
+    }
 
-if(plano==='ASSINAR'){
-msg='Olá, quero assinar IPTV';
-}
+    if(plano === 'STAR PREMIUM'){
+        msg = 'Olá, quero assinar o Plano Star Premium';
+    }
 
-window.location.href=
-`https://wa.me/5521988373685?text=${encodeURIComponent(msg)}`;
+    if(plano === 'ASSINAR'){
+        msg = 'Olá, quero assinar IPTV';
+    }
+
+    window.location.href =
+    `https://wa.me/5521988373685?text=${encodeURIComponent(msg)}`;
 }
 
 function openPixModal(){
@@ -718,15 +810,16 @@ pixVisible
 : '••••••••••••••••••••••••••••••••••';
 
 }
+ function indicarAmigo() {
+    const tel = document.getElementById('telIndicado').value;
+    if (tel.length < 8) { alert("Digite o número do seu amigo."); return; }
+    window.open("https://wa.me/5521988373685?text=" + encodeURIComponent("Quero indicar um amigo: " + tel), '_blank');
+  }
 
 </script>
 
 </body>
 </html>
-
-</script>
-
-</body>
 </html>
 
 
